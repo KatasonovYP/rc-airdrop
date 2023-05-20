@@ -1,8 +1,9 @@
 import { FC } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { Home } from './home';
 import Create from './create';
 import Find from './find';
+import Claim from './claim';
+import Home from './home';
 
 export const Routing: FC = () => {
 	return (
@@ -21,7 +22,7 @@ export const Routing: FC = () => {
 			/>
 			<Route
 				path='/claim'
-				element={<Home />}
+				element={<Claim />}
 			/>
 		</Routes>
 	);

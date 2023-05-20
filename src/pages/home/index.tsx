@@ -1,6 +1,4 @@
-import { FC } from 'react';
-
-export const Home: FC = () => {
+export default function Home() {
 	return (
 		<div className='min-h-screen'>
 			<main className='flex min-h-max flex-col items-center justify-between p-24'>
