@@ -13,9 +13,15 @@ export const AirdropHeader: FC<WalletConnectionProps> = ({
 	genesisHashes,
 	setActiveConnectorType,
 }) => {
-	const { setConnection } = useConnection(connectedAccounts, genesisHashes);
+	const { setConnection, connection } = useConnection(connectedAccounts, genesisHashes);
 
 	useEffect(() => setActiveConnectorType(BROWSER_WALLET), []);
+	let connectButtonMessage = 'Connect';
+
+	useEffect(() => {
+		connectButtonMessage = connection !== undefined ? 'Disconnect' : 'Connect';
+	}, [connection]);
+
 
 	function connectHandle() {
 		activeConnector?.connect().then(setConnection).catch(console.error);
@@ -35,7 +41,7 @@ export const AirdropHeader: FC<WalletConnectionProps> = ({
 			>
 				Find
 			</StyledLink>
-			<ConnectButton onClick={connectHandle}>Connect</ConnectButton>
+			<ConnectButton onClick={connectHandle}>{connectButtonMessage}</ConnectButton>
 		</header>
 	);
 };

@@ -7,7 +7,7 @@ export default function Find() {
 			<input/>
 			<p>Contract Subindex</p>
 			<input/>
-			<StyledLink href='/claim' description={''}>Find</StyledLink>
+			<StyledLink href='/claim' description={''}>Find airdrop</StyledLink>
 		</div>
 	</main>);
 }

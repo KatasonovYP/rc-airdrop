@@ -13,8 +13,8 @@ export default function Claim() {
 					/>
 				</div>
 				<div className='grid grid-cols-2 gap-4'>
-					<p>perfect dropped nft</p>
-					<p>awesome design</p>
+					<p>perfect name</p>
+					<p>awesome description</p>
 				</div>
 				<StyledLink href='/find' description={''}>Claim</StyledLink>
 			</div>
