@@ -32,7 +32,7 @@ jobs:
         if: always()
         with:
           name: Tests
-          path: /*.xml
+          path: coverage/*.xml
           reporter: java-junit
           fail-on-error: true
 
