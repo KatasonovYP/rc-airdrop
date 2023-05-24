@@ -1,13 +1,9 @@
-import { WithHeader } from './components/with-header';
-import { Routing } from './pages/routing';
+import react from 'react';
+import Router from './router/Router';
+import './App.css';
 
 function App() {
-	return (
-		<div className='min-h-screen'>
-			<WithHeader />
-			<Routing />
-		</div>
-	);
+	return <Router />;
 }
 
-export default App;
+export default App

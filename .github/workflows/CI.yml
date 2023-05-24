@@ -36,5 +36,5 @@ jobs:
       - name: Upload coverage to GitHubPage
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: coverage/lcov-report # The folder the action should deploy.
+          folder: coverage # The folder the action should deploy.
           branch: coverage-deploy # The branch the action should deploy to.
