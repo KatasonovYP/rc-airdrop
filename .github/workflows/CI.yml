@@ -23,18 +23,15 @@ jobs:
 
       - name: Run coverage test
         run: npm run coverage
-      
-      - name: see scope
-        run: ls
-      
-      - name: Report
-        uses: dorny/test-reporter@v1
-        if: always()
-        with:
-          name: Tests
-          path: coverage/*.xml
-          reporter: java-junit
-          fail-on-error: true
+            
+      #- name: Report
+      #  uses: dorny/test-reporter@v1
+      #  if: always()
+      #  with:
+      #    name: Tests
+      #    path: coverage/*.xml
+      #    reporter: java-junit
+      #    fail-on-error: true
 
       - name: Upload coverage to GitHubPage
         uses: JamesIves/github-pages-deploy-action@v4
