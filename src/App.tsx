@@ -1,4 +1,4 @@
-import react from 'react';
+
 import { Router } from './router/Router';
 import { WithHeader } from './components/with-header';
 import './App.css';

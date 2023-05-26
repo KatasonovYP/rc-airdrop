@@ -21,6 +21,8 @@ export async function initAirdrop(
 	whitelist: string[] = [],
 	nftLimit: number
 ) {
+	console.log("🚀 ~ file: transaction.ts:25 ~ nftLimit:", nftLimit)
+	console.log("🚀 ~ file: transaction.ts:25 ~ whitelist:", whitelist)
 	return connection.signAndSendTransaction(
 		account,
 		AccountTransactionType.Update,
