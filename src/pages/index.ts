@@ -1,3 +1,6 @@
-import HomePage from "./HomePage";
+import Home from "./home"
+import Create from "./create"
+import Find from "./find"
+import Claim from "./claim"
 
-export {HomePage}
+export {Home,Create,Find,Claim}

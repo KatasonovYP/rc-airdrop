@@ -1,9 +1,15 @@
 import react from 'react';
-import Router from './router/Router';
+import { Router } from './router/Router';
+import { WithHeader } from './components/with-header';
 import './App.css';
 
 function App() {
-	return <Router />;
+	return (
+		<div className='min-h-screen'>
+			<WithHeader />
+			<Router />
+		</div>
+	);
 }
 
-export default App
+export default App;
