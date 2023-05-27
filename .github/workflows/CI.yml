@@ -23,6 +23,15 @@ jobs:
 
       - name: Run coverage test
         run: npm run coverage
+      
+    
+      - name: Add vercel config file to remove coverage deploy on vercel
+        id: create-json
+        uses: jsdaniell/create-json@v1.2.2
+        with:
+          name: "vercel.json"
+          json: '{"git": {"deploymentEnabled": {"coverage-deploy": false}}}'
+          dir: 'coverage/'
             
       #- name: Report
       #  uses: dorny/test-reporter@v1
