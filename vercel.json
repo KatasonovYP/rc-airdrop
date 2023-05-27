@@ -1,7 +1,0 @@
-{
-  "git": {
-    "deploymentEnabled": {
-      "coverage-deploy": false
-    }
-  }
-}
