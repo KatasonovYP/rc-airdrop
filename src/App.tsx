@@ -1,12 +1,11 @@
-
 import { Router } from './router/Router';
-import { WithHeader } from './components/with-header';
 import './App.css';
+import { AirdropHeader } from './components/airdrop-header';
 
 function App() {
 	return (
 		<div className='min-h-screen'>
-			<WithHeader />
+			<AirdropHeader />
 			<Router />
 		</div>
 	);
