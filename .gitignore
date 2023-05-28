@@ -29,3 +29,4 @@ build
 coverage
 __snapshots__
 *.test.ts.snap
+analyse.html
