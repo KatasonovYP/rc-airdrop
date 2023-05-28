@@ -8,7 +8,7 @@ export default function Create() {
 				<FormInit />
 				<div>
 					<img
-						src='/src/shared/assets/nft.png'
+						src='/public/nft.png'
 						alt=''
 						width={512}
 						height={512}

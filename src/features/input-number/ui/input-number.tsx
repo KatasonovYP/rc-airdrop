@@ -16,7 +16,7 @@ interface NumberInputProperties<T extends FieldValues> {
 // replace any to Record<string, unknown>
 type customFC = FC<NumberInputProperties<any>>;
 
-export const NumberInput: customFC = <T extends FieldValues>(props: NumberInputProperties<T>) => {
+export const InputNumber: customFC = <T extends FieldValues>(props: NumberInputProperties<T>) => {
 	const {
 		name,
 		register,

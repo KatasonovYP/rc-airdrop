@@ -1,4 +1,4 @@
-import { Router } from 'app/providers/router/ui/router.tsx';
+import { Router } from './providers/router/ui/router.tsx';
 import { AirdropHeader } from 'widgets/header';
 
 function App() {

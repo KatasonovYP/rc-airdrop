@@ -1,1 +1,1 @@
-export { NumberInput } from './ui/input-number.tsx';
+export { InputNumber } from './ui/input-number.tsx';

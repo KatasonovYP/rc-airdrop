@@ -1,7 +1,7 @@
 import { type FC } from 'react';
 
 import { useFormInit } from '../hooks/use-form-init.ts';
-import { NumberInput } from 'features/input-number';
+import { InputNumber } from 'features/input-number';
 
 export const FormInit: FC = () => {
 	const {
@@ -18,10 +18,10 @@ export const FormInit: FC = () => {
 				<input type='file' disabled />
 				<p>Whitelist Accounts</p>
 				<input type='file' disabled />
-				<NumberInput {...{ register, errors, name: 'max token amount', defaultValue: 1 }} />
-				<NumberInput {...{ register, errors, name: 'max number of claims', defaultValue: 0 }} />
+				<InputNumber {...{ register, errors, name: 'max token amount', defaultValue: 1 }} />
+				<InputNumber {...{ register, errors, name: 'max number of claims', defaultValue: 0 }} />
 				{/*TODO: make DataInput*/}
-				<NumberInput {...{ register, errors, name: 'airdrop end time', defaultValue: 1 }} />
+				<InputNumber {...{ register, errors, name: 'airdrop end time', defaultValue: 1 }} />
 
 				{/*TODO: redirect user to claim page*/}
 				<button type='submit' disabled={false}>Find airdrop</button>
