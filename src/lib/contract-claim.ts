@@ -12,7 +12,7 @@ export function contractClaim(connection: WalletConnection, account: string) {
 				index: BigInt(0),
 				subindex: BigInt(0),
 			},
-			receiveName: `${CONTRACT_NAME}.claim_nft`,
+			receiveName: `${CONTRACT_NAME}.contract_claim_nft`,
 			maxContractExecutionEnergy: MAX_CONTRACT_EXECUTION_ENERGY,
 		},
 		{
