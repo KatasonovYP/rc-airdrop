@@ -1,11 +1,11 @@
 import { FC, useEffect } from 'react';
-import { StyledLink } from '../../styled-link';
-import { BROWSER_WALLET } from '../../../config';
-import { ConnectButton } from '../../connect-button';
-import { useConcordiumApi } from '../../concordium-provider';
-import { contractInit } from '../../../lib/contract-init.ts';
-import { contractView } from '../../../lib/contract-view.ts';
-import { contractClaim } from '../../../lib/contract-claim.ts';
+import { StyledLink } from 'components/styled-link';
+import { BROWSER_WALLET } from 'config';
+import { ConnectButton } from 'components/connect-button';
+import { useConcordiumApi } from 'components/concordium-provider';
+import { contractInit } from 'lib/contract-init.ts';
+import { contractView } from 'lib/contract-view.ts';
+import { contractClaim } from 'lib/contract-claim.ts';
 
 export const AirdropHeader: FC = () => {
 	const {
@@ -19,13 +19,20 @@ export const AirdropHeader: FC = () => {
 	function initHandler() {
 		if (!connection || !account) return;
 		console.log('sending init...');
-		contractInit(connection, account);
+		contractInit(connection, account, {
+			whitelist: [],
+			nft_limit: 1,
+			nft_time_limit: 1,
+			nft_limit_per_address: 1,
+			reserve: 0,
+			token_id: '000001',
+		});
 	}
 
 	function viewHandler() {
 		if (!connection || !account) return;
 		console.log('sending view...');
-		contractView(connection, account);
+		contractView(connection, account, 0, 0);
 	}
 
 	function claimHandler() {

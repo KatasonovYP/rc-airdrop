@@ -1,6 +1,6 @@
 import { FC, ReactNode } from 'react';
 import { WalletConnectionProps } from '@concordium/react-components/dist/WithWalletConnector';
-import { ConcordiumContext } from '../../../config/concordium-context.ts';
+import { ConcordiumContext } from 'config/concordium-context.ts';
 import { useConcordiumProps } from '../hooks/use-concordium-props.ts';
 
 interface ConcordiumProviderProps {

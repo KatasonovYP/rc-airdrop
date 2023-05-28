@@ -1,6 +1,6 @@
 import { type FC } from 'react';
 
-import { NumberInput } from '../../input-number';
+import { NumberInput } from 'components/input-number';
 import { useFormFind } from '../hooks/use-form-find.ts';
 
 export const FormFind: FC = () => {

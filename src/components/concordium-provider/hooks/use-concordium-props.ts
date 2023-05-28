@@ -2,7 +2,7 @@ import { useConnection } from '@concordium/react-components/dist/useConnection';
 import { useConnect } from '@concordium/react-components';
 import { useMemo } from 'react';
 import { WalletConnectionProps } from '@concordium/react-components/dist/WithWalletConnector';
-import { ConcordiumContextProps } from '../../../config/concordium-context.ts';
+import { ConcordiumContextProps } from 'config/concordium-context.ts';
 
 export function useConcordiumProps(walletConnectionPropsDefault: WalletConnectionProps): ConcordiumContextProps {
 

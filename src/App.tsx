@@ -1,6 +1,6 @@
-import { Router } from './router/Router';
+import { Router } from 'router/Router';
 import './App.css';
-import { AirdropHeader } from './components/airdrop-header';
+import { AirdropHeader } from 'components/airdrop-header';
 
 function App() {
 	return (

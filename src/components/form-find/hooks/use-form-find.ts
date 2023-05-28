@@ -1,5 +1,5 @@
-import { useConcordiumApi } from '../../concordium-provider';
-import { contractView } from '../../../lib/contract-view.ts';
+import { useConcordiumApi } from 'components/concordium-provider';
+import { contractView } from 'lib/contract-view.ts';
 import { FormFindProps } from '../model/form-find-props.ts';
 import { type SubmitHandler, useForm } from 'react-hook-form';
 

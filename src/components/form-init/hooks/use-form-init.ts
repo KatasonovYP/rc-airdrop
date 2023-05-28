@@ -1,7 +1,7 @@
-import { useConcordiumApi } from '../../concordium-provider';
+import { useConcordiumApi } from 'components/concordium-provider';
 import { FormInitProps } from '../model/form-init-props.ts';
 import { type SubmitHandler, useForm } from 'react-hook-form';
-import { contractInit } from '../../../lib/contract-init.ts';
+import { contractInit } from 'lib/contract-init.ts';
 
 export function useFormInit() {
 	const {
@@ -24,10 +24,9 @@ export function useFormInit() {
 			whitelist: [],
 			nft_limit: +data['max token amount'],
 			reserve: +data['max number of claims'],
-			// TODO: parse metadata
-			nft_limit_per_address: 1,
 			nft_time_limit: +data['airdrop end time'],
-			token_id: '00000001'
+			// TODO: parse metadata
+			base_url: 'https://awesome-nft-address.jpeg',
 		});
 	};
 

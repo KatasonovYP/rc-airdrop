@@ -1,4 +1,4 @@
-import { useConcordiumApi } from '../../concordium-provider';
+import { useConcordiumApi } from 'components/concordium-provider';
 
 export function useToggleConnection() {
 	const {

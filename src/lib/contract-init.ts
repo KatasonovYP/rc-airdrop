@@ -1,7 +1,7 @@
 import { AccountTransactionType, CcdAmount } from '@concordium/web-sdk';
-import { CONTRACT_NAME, LP_RAW_SCHEMA, MAX_CONTRACT_EXECUTION_ENERGY, MODULE_REFERENCE } from '../config';
+import { CONTRACT_NAME, LP_RAW_SCHEMA, MAX_CONTRACT_EXECUTION_ENERGY, MODULE_REFERENCE } from 'config';
 import { WalletConnection } from '@concordium/react-components';
-import { ContractInitParameters } from '../model/ContractInitParameters.ts';
+import { ContractInitParameters } from '../model/contract-init-parameters.ts';
 
 export function contractInit(connection: WalletConnection, account: string, parameters: ContractInitParameters) {
 	connection.signAndSendTransaction(

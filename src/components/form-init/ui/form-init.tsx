@@ -1,6 +1,6 @@
 import { type FC } from 'react';
 
-import { NumberInput } from '../../input-number';
+import { NumberInput } from 'components/input-number';
 import { useFormInit } from '../hooks/use-form-init.ts';
 
 export const FormInit: FC = () => {

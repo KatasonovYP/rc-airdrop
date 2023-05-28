@@ -1,4 +1,4 @@
-import { StyledLink } from '../../components/styled-link';
+import { StyledLink } from 'components/styled-link';
 
 export default function Claim() {
 	return (
