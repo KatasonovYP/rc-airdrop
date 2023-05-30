@@ -1,6 +1,6 @@
 import { FC, useEffect } from 'react';
 import { BROWSER_WALLET } from 'shared/config';
-import { contractInit } from 'shared/lib/contract-init.ts';
+import { contractInit } from 'widgets/form-init/lib/contract-init.ts';
 import { contractView } from 'shared/lib/contract-view.ts';
 import { contractClaim } from 'shared/lib/contract-claim.ts';
 import { useConcordiumApi } from 'shared/hooks/use-concordium-api.ts';

@@ -15,9 +15,17 @@ export const FormInit: FC = () => {
 			<div>
 				{/*TODO: make FileInput*/}
 				<p>Metadata</p>
-				<input type='file' disabled />
+				<input
+					type='file'
+					placeholder={`Input whitelist`}
+					{...register('metadata')}
+				/>
 				<p>Whitelist Accounts</p>
-				<input type='file' disabled />
+				<input
+					type='file'
+					placeholder={`Input whitelist`}
+					{...register('whitelist')}
+				/>
 				<InputNumber {...{ register, errors, name: 'max token amount', defaultValue: 1 }} />
 				<InputNumber {...{ register, errors, name: 'max number of claims', defaultValue: 0 }} />
 				{/*TODO: make DataInput*/}

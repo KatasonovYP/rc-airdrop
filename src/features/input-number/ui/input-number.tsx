@@ -27,7 +27,6 @@ export const InputNumber: customFC = <T extends FieldValues>(props: NumberInputP
 		<>
 			<div>{name}</div>
 			<input
-				id='standard-basic'
 				placeholder={`Введите ${name}`}
 				defaultValue={defaultValue}
 				{...register(name, { required: true, pattern: numberRegExp })}

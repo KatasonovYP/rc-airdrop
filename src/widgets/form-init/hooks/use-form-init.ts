@@ -1,7 +1,9 @@
+import { useState } from 'react';
 import { FormInitProps } from '../model/form-init-props.ts';
 import { type SubmitHandler, useForm } from 'react-hook-form';
-import { contractInit } from 'shared/lib/contract-init.ts';
-import { useConcordiumApi } from 'shared/hooks/use-concordium-api.ts';
+import { useWatchFiles } from 'widgets/form-init/hooks/use-watch-files.ts';
+import { useContractInit } from 'widgets/form-init/hooks/use-contract-init.ts';
+import { Metadata } from 'widgets/form-init/model/metadata.ts';
 
 export function useFormInit() {
 	const {
@@ -10,24 +12,49 @@ export function useFormInit() {
 		formState: { errors },
 	} = useForm<FormInitProps>();
 
-	const { connection, account } = useConcordiumApi();
+	const [storedData, setStoredData] = useState<FormInitProps>();
+	const contractInit = useContractInit();
 
-	const onAction: SubmitHandler<FormInitProps> = (data): void => {
-		console.log(data);
-		// TODO: make error handler
-		if (!connection || !account) {
-			console.error('user doesn\'t authorised');
+	const {
+		listenerWhitelist,
+		listenerMetadata,
+		metadata,
+		whitelist,
+	} = useWatchFiles(sendContract);
+
+	function sendContract() {
+		if (!storedData) {
 			return;
 		}
-		contractInit(connection, account, {
-			// TODO: include white list
-			whitelist: [],
-			nft_limit: +data['max token amount'],
-			reserve: +data['max number of claims'],
-			nft_time_limit: +data['airdrop end time'],
-			// TODO: parse metadata
-			base_url: 'https://awesome-nft-address.jpeg',
-		});
+
+		console.log(storedData);
+		console.log(metadata);
+		console.log(whitelist);
+
+		contractInit(
+			whitelist.split(','),
+			+storedData['max token amount'],
+			+storedData['max number of claims'],
+			+storedData['airdrop end time'],
+			// TODO: write type guard for metadata
+			(JSON.parse(metadata) as Metadata).image,
+		);
+	}
+
+
+	const onAction: SubmitHandler<FormInitProps> = async (data): Promise<void> => {
+		setStoredData(data);
+
+		// TODO: move logic to use-watch-files.ts
+
+		const metadataReader = new FileReader();
+		const whitelistReader = new FileReader();
+
+		metadataReader.onloadend = listenerMetadata;
+		whitelistReader.onloadend = listenerWhitelist;
+
+		metadataReader.readAsText(data.metadata[0]);
+		whitelistReader.readAsText(data.whitelist[0]);
 	};
 
 	return { register, errors, handleAction: handleSubmit(onAction) };
