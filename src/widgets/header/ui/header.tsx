@@ -43,13 +43,13 @@ export const AirdropHeader: FC = () => {
 	return (
 		<header className='flex items-center justify-between px-24 py-12'>
 			<StyledLink
-				href='/create'
+				to='/create'
 				description='create new your own airdrop'
 			>
 				Create Airdrop
 			</StyledLink>
 			<StyledLink
-				href='/find'
+				to='/find'
 				description='find airdrops'
 			>
 				Find

@@ -14,7 +14,7 @@ export default function Create() {
 						height={512}
 					/>
 				</div>
-				<StyledLink href='/find' description={''}>Drop</StyledLink>
+				<StyledLink to='/find' description={''}>Drop</StyledLink>
 			</div>
 		</main>
 	);

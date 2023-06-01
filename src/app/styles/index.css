@@ -25,3 +25,9 @@ body {
   )
   rgb(var(--background-start-rgb));
 }
+
+.page-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

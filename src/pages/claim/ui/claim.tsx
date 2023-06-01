@@ -16,7 +16,7 @@ export default function Claim() {
 					<p>perfect name</p>
 					<p>awesome description</p>
 				</div>
-				<StyledLink href='/find' description={''}>Claim</StyledLink>
+				<StyledLink to='/find' description={''}>Claim</StyledLink>
 			</div>
 		</main>
 	);
