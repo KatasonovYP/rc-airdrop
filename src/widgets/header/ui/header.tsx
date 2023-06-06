@@ -34,7 +34,7 @@ export const AirdropHeader: FC = () => {
 	function claimHandler() {
 		if (!connection || !account) return;
 		console.log('sending claim...');
-		contractClaim(connection, account);
+		contractClaim(connection, account, 4762, 0);
 	}
 
 	return (
