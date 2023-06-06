@@ -30,8 +30,11 @@ export const FormInit: FC = () => {
 					type='file'
 					placeholder={`Input whitelist`}
 					accept='.txt'
-					{...register('whitelist')}
+					{...register('whitelist', { required: true })}
 				/>
+				{errors.whitelist?.type === 'required' && (
+					<TextAlert>Whitelist is Required</TextAlert>
+				)}
 				<InputNumber
 					{...{
 						register,

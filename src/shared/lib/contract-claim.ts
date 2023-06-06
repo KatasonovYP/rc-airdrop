@@ -5,7 +5,6 @@ import {
 	MAX_CONTRACT_EXECUTION_ENERGY,
 } from '../config';
 import { WalletConnection } from '@concordium/react-components';
-import { DUMMY_WHITELIST } from 'shared/config/dummy.ts';
 import { create_hash_tree, get_hash_proof } from 'shared/lib/merkle-tree';
 import { SHA256 } from 'crypto-js';
 
@@ -16,7 +15,12 @@ export function contractClaim(
 	subindex: number,
 ) {
 	// TODO: put the tree logic in a separate module
-	const tree = create_hash_tree(DUMMY_WHITELIST);
+	const whitelist = localStorage.getItem('whitelist')?.split(',');
+	console.log('using whitelist:', whitelist);
+	if (!whitelist) {
+		throw new Error('no stored whitelist');
+	}
+	const tree = create_hash_tree(whitelist);
 	let proof: string[] | undefined;
 	if (tree) {
 		console.log('tree', tree);

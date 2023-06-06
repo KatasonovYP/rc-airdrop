@@ -28,6 +28,8 @@ export function useFormInit() {
 		console.log('whitelist', whitelist);
 		console.log('data', new Date(storedData['airdrop end time']).getTime());
 
+		localStorage.setItem('whitelist', whitelist);
+
 		contractInit(
 			whitelist !== '' ? whitelist.split(',') : [],
 			+storedData['max token amount'],
