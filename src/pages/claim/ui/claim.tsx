@@ -19,7 +19,7 @@ export default function Claim() {
 			<div className='grid grid-cols-2 gap-12'>
 				<div>
 					<img
-						src='/public/nft.png'
+						src='/nft.png'
 						alt=''
 						width={512}
 						height={512}
