@@ -194,8 +194,6 @@ export function get_hash_proof(test, merkle_tree) {
 
 		wasm.get_hash_proof(returnPtr, addHeapObject(test), ptr0);
 
-		console.log('v2', 222);
-
 		const r0 = getInt32Memory0()[returnPtr / 4];
 		const r1 = getInt32Memory0()[returnPtr / 4 + 1];
 		let v2;
