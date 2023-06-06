@@ -15,12 +15,8 @@ export function useFormInit() {
 	const [storedData, setStoredData] = useState<FormInitProps>();
 	const contractInit = useContractInit();
 
-	const {
-		listenerWhitelist,
-		listenerMetadata,
-		metadata,
-		whitelist,
-	} = useWatchFiles(sendContract);
+	const { listenerWhitelist, listenerMetadata, metadata, whitelist } =
+		useWatchFiles(sendContract);
 
 	function sendContract() {
 		if (!storedData || metadata === undefined || whitelist === undefined) {
@@ -43,8 +39,9 @@ export function useFormInit() {
 		);
 	}
 
-
-	const onAction: SubmitHandler<FormInitProps> = async (data): Promise<void> => {
+	const onAction: SubmitHandler<FormInitProps> = async (
+		data,
+	): Promise<void> => {
 		setStoredData(data);
 
 		// TODO: move logic to use-watch-files.ts
@@ -57,7 +54,6 @@ export function useFormInit() {
 
 		metadataReader.readAsText(data.metadata[0]);
 		whitelistReader.readAsText(data.whitelist[0]);
-
 	};
 
 	return {

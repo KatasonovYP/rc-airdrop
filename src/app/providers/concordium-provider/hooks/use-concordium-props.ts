@@ -4,25 +4,22 @@ import { useMemo } from 'react';
 import { WalletConnectionProps } from '@concordium/react-components/dist/WithWalletConnector';
 import { ConcordiumContextProps } from 'shared/config/concordium-context.ts';
 
-export function useConcordiumProps(walletConnectionPropsDefault: WalletConnectionProps): ConcordiumContextProps {
-
-	const {
-		connectedAccounts,
-		genesisHashes,
-		activeConnector,
-	} = walletConnectionPropsDefault;
+export function useConcordiumProps(
+	walletConnectionPropsDefault: WalletConnectionProps,
+): ConcordiumContextProps {
+	const { connectedAccounts, genesisHashes, activeConnector } =
+		walletConnectionPropsDefault;
 
 	const connection = useConnection(connectedAccounts, genesisHashes);
 
 	const connect = useConnect(activeConnector, connection.setConnection);
 
 	return useMemo(
-		(): ConcordiumContextProps => (
-			{
-				...walletConnectionPropsDefault,
-				...connection,
-				...connect,
-			}),
+		(): ConcordiumContextProps => ({
+			...walletConnectionPropsDefault,
+			...connection,
+			...connect,
+		}),
 
 		[walletConnectionPropsDefault, connection, connect],
 	);

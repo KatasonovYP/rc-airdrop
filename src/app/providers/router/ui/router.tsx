@@ -10,11 +10,11 @@ export const Router: FC = () => {
 				<Route
 					key={path}
 					path={path}
-					element={(
+					element={
 						<Suspense fallback={<PageLoader />}>
 							<div className='page-wrapper'>{element}</div>
 						</Suspense>
-					)}
+					}
 				/>
 			))}
 		</Routes>

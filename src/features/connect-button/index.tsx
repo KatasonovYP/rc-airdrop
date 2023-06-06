@@ -1,1 +1,1 @@
-export {ConnectButton} from './ui/connect-button.tsx'
+export { ConnectButton } from './ui/connect-button.tsx';

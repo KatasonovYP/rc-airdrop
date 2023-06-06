@@ -3,7 +3,7 @@ export enum AppRoutes {
 	CREATE = 'create',
 	FIND = 'find',
 	CLAIM = 'claim',
-	NOT_FOUNT = 'not-found'
+	NOT_FOUNT = 'not-found',
 }
 
 export const RoutePath: Record<AppRoutes, string> = {

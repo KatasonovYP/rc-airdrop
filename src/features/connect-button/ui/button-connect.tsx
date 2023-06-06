@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { useButtonConnect } from '../hooks/use-button-connect.ts';
-import cls from './button-connect.module.css'
+import cls from './button-connect.module.css';
 import classNames from 'classnames';
 
 export const ButtonConnect: FC = () => {

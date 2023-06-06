@@ -7,9 +7,11 @@ export const WalletConnectorWrapper: FC<PropsWithChildren> = ({ children }) => {
 	return (
 		<WithWalletConnector network={testnet}>
 			{(props) => {
-				return (<ConcordiumProvider walletConnectionPropsDefault={props}>
-					{children}
-				</ConcordiumProvider>);
+				return (
+					<ConcordiumProvider walletConnectionPropsDefault={props}>
+						{children}
+					</ConcordiumProvider>
+				);
 			}}
 		</WithWalletConnector>
 	);

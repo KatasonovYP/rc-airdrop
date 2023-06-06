@@ -5,11 +5,7 @@ import { InputNumber } from 'features/input-number';
 import { useAuth } from 'shared/hooks/use-auth.ts';
 
 export const FormInit: FC = () => {
-	const {
-		register,
-		errors,
-		handleAction,
-	} = useFormInit();
+	const { register, errors, handleAction } = useFormInit();
 
 	const { isAuth } = useAuth();
 
@@ -31,8 +27,22 @@ export const FormInit: FC = () => {
 					accept='.txt'
 					{...register('whitelist')}
 				/>
-				<InputNumber {...{ register, errors, name: 'max token amount', defaultValue: 0 }} />
-				<InputNumber {...{ register, errors, name: 'max number of claims', defaultValue: 0 }} />
+				<InputNumber
+					{...{
+						register,
+						errors,
+						name: 'max token amount',
+						defaultValue: 0,
+					}}
+				/>
+				<InputNumber
+					{...{
+						register,
+						errors,
+						name: 'max number of claims',
+						defaultValue: 0,
+					}}
+				/>
 
 				<div className='flex flex-row gap-4'>
 					<p>airdrop end time</p>

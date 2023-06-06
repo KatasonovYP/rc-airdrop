@@ -3,8 +3,12 @@ import { WalletConnectionProps } from '@concordium/react-components/dist/WithWal
 import { Connection } from '@concordium/react-components/dist/useConnection';
 import { Connect } from '@concordium/react-components';
 
-export type ConcordiumContextProps = WalletConnectionProps & Connection & Connect
+export type ConcordiumContextProps = WalletConnectionProps &
+	Connection &
+	Connect;
 
-export const ConcordiumContext = createContext<Partial<ConcordiumContextProps>>({});
+export const ConcordiumContext = createContext<Partial<ConcordiumContextProps>>(
+	{},
+);
 
 export const LOCAL_STORAGE_CONCORDIUM_KEY = 'walletConnectionProps';

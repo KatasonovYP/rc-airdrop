@@ -8,11 +8,7 @@ import { StyledLink } from 'shared/components/styled-link';
 import { ConnectButton } from 'features/connect-button';
 
 export const AirdropHeader: FC = () => {
-	const {
-		setActiveConnectorType,
-		connection,
-		account,
-	} = useConcordiumApi();
+	const { setActiveConnectorType, connection, account } = useConcordiumApi();
 
 	useEffect(() => setActiveConnectorType(BROWSER_WALLET), []);
 
@@ -58,9 +54,12 @@ export const AirdropHeader: FC = () => {
 			<button onClick={initHandler}>init</button>
 			<button onClick={viewHandler}>view</button>
 			<button onClick={claimHandler}>claim</button>
-			<button onClick={() => {
-				console.log(account);
-			}}>check
+			<button
+				onClick={() => {
+					console.log(account);
+				}}
+			>
+				check
 			</button>
 			<ConnectButton />
 		</header>

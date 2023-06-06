@@ -6,7 +6,7 @@ interface Attribute {
 
 export interface Metadata {
 	name: string;
-	unique: boolean,
+	unique: boolean;
 	description: string;
 	thumbnail: {
 		url: string;

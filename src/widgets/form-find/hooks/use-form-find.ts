@@ -14,7 +14,9 @@ export function useFormFind() {
 
 	const { connection, account } = useConcordiumApi();
 
-	const onAction: SubmitHandler<FormFindProps> = async (data): Promise<void> => {
+	const onAction: SubmitHandler<FormFindProps> = async (
+		data,
+	): Promise<void> => {
 		console.log(data);
 		// TODO: make error handler
 		if (!connection || !account) return;

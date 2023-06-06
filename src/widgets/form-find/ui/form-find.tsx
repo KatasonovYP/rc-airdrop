@@ -5,22 +5,25 @@ import { InputNumber } from 'features/input-number';
 import { useAuth } from 'shared/hooks/use-auth.ts';
 
 export const FormFind: FC = () => {
-	const {
-		register,
-		errors,
-		handleAction,
-	} = useFormFind();
+	const { register, errors, handleAction } = useFormFind();
 
-	const {isAuth} = useAuth();
+	const { isAuth } = useAuth();
 
 	return (
 		<form onSubmit={handleAction}>
 			<div>
-				<InputNumber {...{ register, errors, name: 'index', defaultValue: 0 }} />
-				<InputNumber {...{ register, errors, name: 'subindex', defaultValue: 0 }} />
+				<InputNumber
+					{...{ register, errors, name: 'index', defaultValue: 4762 }}
+				/>
+				<InputNumber
+					{...{ register, errors, name: 'subindex', defaultValue: 0 }}
+				/>
 
-				<button type='submit' disabled={!isAuth}>
-					{isAuth ? 'Find airdrop': 'please connect wallet'}
+				<button
+					type='submit'
+					disabled={!isAuth}
+				>
+					{isAuth ? 'Find airdrop' : 'please connect wallet'}
 				</button>
 			</div>
 		</form>

@@ -1,4 +1,7 @@
-import { ConcordiumContext, ConcordiumContextProps } from 'shared/config/concordium-context.ts';
+import {
+	ConcordiumContext,
+	ConcordiumContextProps,
+} from 'shared/config/concordium-context.ts';
 import { useContext } from 'react';
 
 export function useConcordiumApi(): ConcordiumContextProps {
