@@ -23,9 +23,13 @@ export function contractClaim(
 		const hashed = SHA256(account).toString();
 		try {
 			proof = get_hash_proof(hashed, tree);
+			console.log('success proof');
 		} catch (error) {
+			console.error('error proof');
 			console.error(error);
 		}
+	} else {
+		console.error('build tree error');
 	}
 
 	connection

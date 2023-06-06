@@ -1,4 +1,3 @@
-import { StyledLink } from 'shared/components/styled-link';
 import { FormInit } from 'widgets/form-init';
 
 export default function Create() {
@@ -14,12 +13,6 @@ export default function Create() {
 						height={512}
 					/>
 				</div>
-				<StyledLink
-					to='/find'
-					description={''}
-				>
-					Drop
-				</StyledLink>
 			</div>
 		</main>
 	);

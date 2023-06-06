@@ -192,10 +192,6 @@ export function get_hash_proof(test, merkle_tree) {
 		_assertClass(merkle_tree, MerkleTree);
 		const ptr0 = merkle_tree.__destroy_into_raw();
 
-		console.log('retptr', returnPtr);
-		console.log('addHeapObject(test)', addHeapObject(test));
-		console.log('ptr0', ptr0);
-
 		wasm.get_hash_proof(returnPtr, addHeapObject(test), ptr0);
 
 		console.log('v2', 222);

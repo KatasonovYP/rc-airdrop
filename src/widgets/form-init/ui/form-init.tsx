@@ -4,6 +4,7 @@ import { useFormInit } from '../hooks/use-form-init.ts';
 import { InputNumber } from 'features/input-number';
 import { useAuth } from 'shared/hooks/use-auth.ts';
 import { TextAlert } from 'shared/components/text-alert';
+import { StyledButton } from 'shared/components/styled-button';
 
 export const FormInit: FC = () => {
 	const { register, errors, handleAction } = useFormInit();
@@ -58,13 +59,12 @@ export const FormInit: FC = () => {
 				</div>
 
 				{/*TODO: redirect user to claim page*/}
-				<button
-					className='px-8 py-4 bg-gray-200 mt-4 rounded-xl hover:bg-blue-500 transition'
+				<StyledButton
 					type='submit'
 					disabled={!isAuth}
 				>
 					{isAuth ? 'Drop' : 'please connect wallet'}
-				</button>
+				</StyledButton>
 			</div>
 		</form>
 	);

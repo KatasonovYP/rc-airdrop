@@ -28,13 +28,13 @@ export default function Claim() {
 				<div className='grid grid-cols-2 gap-4'>
 					<p>perfect name</p>
 					<p>awesome description</p>
+					<StyledButton
+						onClick={claimHandler}
+						description={''}
+					>
+						Claim
+					</StyledButton>
 				</div>
-				<StyledButton
-					onClick={claimHandler}
-					description={''}
-				>
-					Claim
-				</StyledButton>
 			</div>
 		</main>
 	);
