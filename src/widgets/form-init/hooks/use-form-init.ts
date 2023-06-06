@@ -23,21 +23,23 @@ export function useFormInit() {
 	} = useWatchFiles(sendContract);
 
 	function sendContract() {
-		if (!storedData) {
+		if (!storedData || metadata === undefined || whitelist === undefined) {
 			return;
 		}
 
-		console.log(storedData);
-		console.log(metadata);
-		console.log(whitelist);
+		console.log('storedData', storedData);
+		console.log('metadata', metadata);
+		console.log('whitelist', whitelist);
+		console.log('data', new Date(storedData['airdrop end time']).getTime());
 
 		contractInit(
-			whitelist.split(','),
+			whitelist !== '' ? whitelist.split(',') : [],
 			+storedData['max token amount'],
 			+storedData['max number of claims'],
-			+storedData['airdrop end time'],
+			new Date(storedData['airdrop end time']).getTime(),
 			// TODO: write type guard for metadata
-			(JSON.parse(metadata) as Metadata).image,
+			(JSON.parse(metadata) as Metadata).display.url,
+			false,
 		);
 	}
 
@@ -55,7 +57,12 @@ export function useFormInit() {
 
 		metadataReader.readAsText(data.metadata[0]);
 		whitelistReader.readAsText(data.whitelist[0]);
+
 	};
 
-	return { register, errors, handleAction: handleSubmit(onAction) };
+	return {
+		register,
+		errors,
+		handleAction: handleSubmit(onAction),
+	};
 }

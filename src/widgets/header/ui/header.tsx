@@ -24,7 +24,8 @@ export const AirdropHeader: FC = () => {
 			nft_limit: 1,
 			nft_time_limit: 1,
 			reserve: 0,
-			base_url: '000001',
+			base_url: '',
+			selected_index: false,
 		});
 	}
 

@@ -3,5 +3,5 @@ export interface FormInitProps {
 	metadata: FileList,
 	'max token amount': number;
 	'max number of claims': number;
-	'airdrop end time': number;
+	'airdrop end time': Date;
 }

@@ -20,7 +20,7 @@ export const routeConfig: Record<AppRoutes, RouteProps> = {
 		element: <Find />,
 	},
 	[AppRoutes.CLAIM]: {
-		path: RoutePath[AppRoutes.CLAIM],
+		path: `${RoutePath[AppRoutes.CLAIM]}/:index/:subindex`,
 		element: <Claim />,
 	},
 	[AppRoutes.NOT_FOUNT]: {

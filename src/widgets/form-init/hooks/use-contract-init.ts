@@ -10,6 +10,7 @@ export function useContractInit() {
 		reserve: number,
 		nftTimeLimit: number,
 		baseUrl: string,
+		selectedIndex: boolean,
 	) => {
 		if (!connection || !account) {
 			return;
@@ -21,6 +22,7 @@ export function useContractInit() {
 			reserve: reserve,
 			nft_time_limit: nftTimeLimit,
 			base_url: baseUrl,
+			selected_index: selectedIndex,
 		});
 	};
 }

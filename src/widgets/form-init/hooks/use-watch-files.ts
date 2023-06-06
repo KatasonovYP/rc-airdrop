@@ -4,8 +4,8 @@ import { listenerFabric, type listenerFabricResult } from 'widgets/form-init/lib
 interface UseWatchFilesResult {
 	listenerMetadata: listenerFabricResult,
 	listenerWhitelist: listenerFabricResult,
-	metadata: string,
-	whitelist: string,
+	metadata: string | undefined,
+	whitelist: string | undefined,
 }
 
 /*
@@ -13,14 +13,14 @@ Hook to perform an action after the data from both files are received
  */
 export function useWatchFiles(script: () => void): UseWatchFilesResult {
 
-	const [metadata, setMetadata] = useState('');
-	const [whitelist, setWhitelist] = useState('');
+	const [metadata, setMetadata] = useState<string | undefined>(undefined);
+	const [whitelist, setWhitelist] = useState<string | undefined>(undefined);
 
 	useEffect(() => {
-		if (metadata && whitelist) {
+		if (metadata !== undefined && whitelist !== undefined) {
 			script();
-			setMetadata('');
-			setWhitelist('');
+			setMetadata(undefined);
+			setWhitelist(undefined);
 		}
 	}, [metadata, whitelist]);
 
