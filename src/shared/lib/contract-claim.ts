@@ -15,6 +15,7 @@ export function contractClaim(
 	index: number,
 	subindex: number,
 ) {
+	// TODO: put the tree logic in a separate module
 	const tree = create_hash_tree(DUMMY_WHITELIST);
 	let proof: string[] | undefined;
 	if (tree) {

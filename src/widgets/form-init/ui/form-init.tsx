@@ -3,6 +3,7 @@ import { type FC } from 'react';
 import { useFormInit } from '../hooks/use-form-init.ts';
 import { InputNumber } from 'features/input-number';
 import { useAuth } from 'shared/hooks/use-auth.ts';
+import { TextAlert } from 'shared/components/text-alert';
 
 export const FormInit: FC = () => {
 	const { register, errors, handleAction } = useFormInit();
@@ -18,8 +19,11 @@ export const FormInit: FC = () => {
 					type='file'
 					placeholder={`Input whitelist`}
 					accept='.json'
-					{...register('metadata')}
+					{...register('metadata', { required: true })}
 				/>
+				{errors.metadata?.type === 'required' && (
+					<TextAlert>Metadata is Required</TextAlert>
+				)}
 				<p>Whitelist Accounts</p>
 				<input
 					type='file'

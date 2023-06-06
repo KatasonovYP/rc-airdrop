@@ -1,11 +1,12 @@
-import { StyledLink } from 'shared/components/styled-link';
 import { useParams } from 'react-router-dom';
 import { contractClaim } from 'shared/lib/contract-claim.ts';
 import { useConcordiumApi } from 'shared/hooks/use-concordium-api.ts';
+import { StyledButton } from 'shared/components/styled-button';
 
 export default function Claim() {
 	const { index, subindex } = useParams();
 	const { connection, account } = useConcordiumApi();
+
 	function claimHandler() {
 		if (!connection || !account || !index || !subindex) {
 			return;
@@ -28,13 +29,12 @@ export default function Claim() {
 					<p>perfect name</p>
 					<p>awesome description</p>
 				</div>
-				<button onClick={claimHandler}>claim</button>
-				<StyledLink
-					to='/find'
+				<StyledButton
+					onClick={claimHandler}
 					description={''}
 				>
 					Claim
-				</StyledLink>
+				</StyledButton>
 			</div>
 		</main>
 	);
