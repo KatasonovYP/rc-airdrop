@@ -1,5 +1,4 @@
-import { StyledLink } from 'components/styled-link';
-import { FormInit } from 'components/form-init';
+import { FormInit } from 'widgets/form-init';
 
 export default function Create() {
 	return (
@@ -8,13 +7,12 @@ export default function Create() {
 				<FormInit />
 				<div>
 					<img
-						src='/nft.png'
+						src='/public/nft.png'
 						alt=''
 						width={512}
 						height={512}
 					/>
 				</div>
-				<StyledLink href='/find' description={''}>Drop</StyledLink>
 			</div>
 		</main>
 	);
