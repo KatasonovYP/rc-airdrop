@@ -1,9 +1,22 @@
-import { TransactionHashLink } from 'shared/components/transaction-hash-link';
+import { LOCAL_STORAGE_KEY_AIRDROP_TRANSACTIONS_INIT } from 'shared/config/local-storage.ts';
+import {
+	AirdropTransactionInit,
+	TransactionInitCard,
+} from 'entities/transaction-card';
 
 export default function Transactions() {
-	const transactions: string[] = JSON.parse(
-		localStorage.getItem('transactions') || '[]',
+	const transactions: AirdropTransactionInit[] = JSON.parse(
+		localStorage.getItem(LOCAL_STORAGE_KEY_AIRDROP_TRANSACTIONS_INIT) ||
+			'[]',
 	);
+
+	transactions.forEach((transaction) => {
+		transaction.initDate = new Date(transaction.initDate);
+		transaction.endTime = new Date(transaction.endTime);
+		transaction.reserve = +transaction.reserve;
+		transaction.nftLimit = +transaction.nftLimit;
+		transaction.selectedIndex = Boolean(transaction.selectedIndex);
+	});
 
 	return (
 		<main className='flex min-h-max flex-col items-center justify-between px-24 py-12'>
@@ -11,11 +24,15 @@ export default function Transactions() {
 				<div>
 					<p>inits</p>
 					<ul>
-						{transactions.map((transaction) => {
+						{transactions.length === 0 && (
+							<p>No Init Transactions</p>
+						)}
+						{transactions.map((transaction, key) => {
 							return (
 								<li>
-									<TransactionHashLink
-										transactionHash={transaction}
+									<TransactionInitCard
+										key={key}
+										{...transaction}
 									/>
 								</li>
 							);

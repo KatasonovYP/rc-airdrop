@@ -5,6 +5,8 @@ import { useWatchFiles } from 'widgets/form-init/hooks/use-watch-files.ts';
 import { useContractInit } from 'widgets/form-init/hooks/use-contract-init.ts';
 import { Metadata } from 'widgets/form-init/model/metadata.ts';
 import { useConcordiumApi } from 'shared/hooks/use-concordium-api.ts';
+import { AirdropTransactionInit } from 'entities/transaction-card';
+import { LOCAL_STORAGE_KEY_AIRDROP_TRANSACTIONS_INIT } from 'shared/config/local-storage.ts';
 
 export function useFormInit() {
 	const {
@@ -45,12 +47,23 @@ export function useFormInit() {
 		)
 			.then((transactionHash) => {
 				setTransactionHash(transactionHash);
-				const transactions: string[] = JSON.parse(
-					localStorage.getItem('transactions') || '[]',
+				const transactions: AirdropTransactionInit[] = JSON.parse(
+					localStorage.getItem(
+						LOCAL_STORAGE_KEY_AIRDROP_TRANSACTIONS_INIT,
+					) || '[]',
 				);
-				transactions.push(transactionHash);
+				transactions.push({
+					initDate: new Date(),
+					metadata: metadata,
+					whitelist: whitelist,
+					endTime: new Date(storedData['airdrop end time']),
+					hash: transactionHash,
+					nftLimit: +storedData['max token amount'],
+					reserve: +storedData['max number of claims'],
+					selectedIndex: Boolean(storedData['selected index']),
+				});
 				localStorage.setItem(
-					'transactions',
+					LOCAL_STORAGE_KEY_AIRDROP_TRANSACTIONS_INIT,
 					JSON.stringify(transactions),
 				);
 				return connection
