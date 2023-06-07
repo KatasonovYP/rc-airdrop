@@ -12,31 +12,18 @@ export function contractInit(
 	connection: WalletConnection,
 	account: string,
 	parameters: ContractInitParameters,
-) {
+): Promise<string> {
 	console.log(parameters);
-	connection
-		.signAndSendTransaction(
-			account,
-			AccountTransactionType.InitContract,
-			{
-				amount: new CcdAmount(BigInt(0)),
-				moduleRef: MODULE_REFERENCE,
-				initName: CONTRACT_NAME,
-				maxContractExecutionEnergy: MAX_CONTRACT_EXECUTION_ENERGY,
-			},
-			{ ...parameters },
-			LP_RAW_SCHEMA,
-		)
-		.then((transactionHash) => {
-			console.log('transactionHash', transactionHash);
-			return connection
-				.getJsonRpcClient()
-				.getTransactionStatus(transactionHash);
-		})
-		.then((transactionStatus) => {
-			console.log(transactionStatus);
-		})
-		.catch((error) => {
-			console.error('init error', error);
-		});
+	return connection.signAndSendTransaction(
+		account,
+		AccountTransactionType.InitContract,
+		{
+			amount: new CcdAmount(BigInt(0)),
+			moduleRef: MODULE_REFERENCE,
+			initName: CONTRACT_NAME,
+			maxContractExecutionEnergy: MAX_CONTRACT_EXECUTION_ENERGY,
+		},
+		{ ...parameters },
+		LP_RAW_SCHEMA,
+	);
 }

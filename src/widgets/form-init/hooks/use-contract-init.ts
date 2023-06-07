@@ -11,12 +11,12 @@ export function useContractInit() {
 		nftTimeLimit: number,
 		baseUrl: string,
 		selectedIndex: boolean,
-	) => {
+	): Promise<string> => {
 		if (!connection || !account) {
-			return;
+			throw new Error('no connection');
 		}
 
-		contractInit(connection, account, {
+		return contractInit(connection, account, {
 			whitelist: whiteList,
 			nft_limit: nftLimit,
 			reserve: reserve,

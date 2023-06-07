@@ -5,36 +5,42 @@ import { InputNumber } from 'features/input-number';
 import { useAuth } from 'shared/hooks/use-auth.ts';
 import { TextAlert } from 'shared/components/text-alert';
 import { StyledButton } from 'shared/components/styled-button';
+import { TransactionHashLink } from 'shared/components/transaction-hash-link';
 
 export const FormInit: FC = () => {
-	const { register, errors, handleAction } = useFormInit();
+	const { register, errors, handleAction, transactionHash } = useFormInit();
 
 	const { isAuth } = useAuth();
 
 	return (
 		<form onSubmit={handleAction}>
-			<div>
-				{/*TODO: make FileInput*/}
-				<p>Metadata</p>
-				<input
-					type='file'
-					placeholder={`Input whitelist`}
-					accept='.json'
-					{...register('metadata', { required: true })}
-				/>
+			<div className='flex flex-col gap-4'>
+				<div className='flex gap-4'>
+					<p>Metadata: </p>
+					<input
+						type='file'
+						placeholder={`Input whitelist`}
+						accept='.json'
+						{...register('metadata', { required: true })}
+					/>
+				</div>
 				{errors.metadata?.type === 'required' && (
 					<TextAlert>Metadata is Required</TextAlert>
 				)}
-				<p>Whitelist Accounts</p>
-				<input
-					type='file'
-					placeholder={`Input whitelist`}
-					accept='.txt'
-					{...register('whitelist', { required: true })}
-				/>
+
+				<div className='flex gap-4'>
+					<p>Whitelist Accounts: </p>
+					<input
+						type='file'
+						placeholder={`Input whitelist`}
+						accept='.txt'
+						{...register('whitelist', { required: true })}
+					/>
+				</div>
 				{errors.whitelist?.type === 'required' && (
 					<TextAlert>Whitelist is Required</TextAlert>
 				)}
+
 				<InputNumber
 					{...{
 						register,
@@ -43,6 +49,7 @@ export const FormInit: FC = () => {
 						defaultValue: 0,
 					}}
 				/>
+
 				<InputNumber
 					{...{
 						register,
@@ -57,17 +64,32 @@ export const FormInit: FC = () => {
 					<input
 						type='date'
 						defaultValue={'2023-06-10'}
-						{...register('airdrop end time')}
+						{...register('airdrop end time', { required: true })}
+					/>
+				</div>
+				{errors['airdrop end time']?.type === 'required' && (
+					<TextAlert>airdrop end time is required</TextAlert>
+				)}
+
+				<div className='flex flex-row gap-4'>
+					<p>selected index</p>
+					<input
+						type='checkbox'
+						{...register('selected index')}
 					/>
 				</div>
 
-				{/*TODO: redirect user to claim page*/}
 				<StyledButton
 					type='submit'
 					disabled={!isAuth}
 				>
 					{isAuth ? 'Drop' : 'please connect wallet'}
 				</StyledButton>
+			</div>
+			<div>
+				{transactionHash && (
+					<TransactionHashLink transactionHash={transactionHash} />
+				)}
 			</div>
 		</form>
 	);

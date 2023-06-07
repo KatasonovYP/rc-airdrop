@@ -4,6 +4,7 @@ import { type SubmitHandler, useForm } from 'react-hook-form';
 import { useWatchFiles } from 'widgets/form-init/hooks/use-watch-files.ts';
 import { useContractInit } from 'widgets/form-init/hooks/use-contract-init.ts';
 import { Metadata } from 'widgets/form-init/model/metadata.ts';
+import { useConcordiumApi } from 'shared/hooks/use-concordium-api.ts';
 
 export function useFormInit() {
 	const {
@@ -13,10 +14,13 @@ export function useFormInit() {
 	} = useForm<FormInitProps>();
 
 	const [storedData, setStoredData] = useState<FormInitProps>();
+	const [transactionHash, setTransactionHash] = useState<string>('');
 	const contractInit = useContractInit();
 
 	const { listenerWhitelist, listenerMetadata, metadata, whitelist } =
 		useWatchFiles(sendContract);
+
+	const { connection } = useConcordiumApi();
 
 	function sendContract() {
 		if (!storedData || metadata === undefined || whitelist === undefined) {
@@ -37,8 +41,28 @@ export function useFormInit() {
 			new Date(storedData['airdrop end time']).getTime(),
 			// TODO: write type guard for metadata
 			(JSON.parse(metadata) as Metadata).display.url,
-			false,
-		);
+			Boolean(storedData['selected index']),
+		)
+			.then((transactionHash) => {
+				setTransactionHash(transactionHash);
+				const transactions: string[] = JSON.parse(
+					localStorage.getItem('transactions') || '[]',
+				);
+				transactions.push(transactionHash);
+				localStorage.setItem(
+					'transactions',
+					JSON.stringify(transactions),
+				);
+				return connection
+					?.getJsonRpcClient()
+					.getTransactionStatus(transactionHash);
+			})
+			.then((transactionStatus) => {
+				console.log(transactionStatus);
+			})
+			.catch((error) => {
+				console.error('init error', error);
+			});
 	}
 
 	const onAction: SubmitHandler<FormInitProps> = async (
@@ -62,5 +86,6 @@ export function useFormInit() {
 		register,
 		errors,
 		handleAction: handleSubmit(onAction),
+		transactionHash,
 	};
 }
