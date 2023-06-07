@@ -10,18 +10,22 @@ export const AirdropHeader: FC = () => {
 	useEffect(() => setActiveConnectorType(BROWSER_WALLET), []);
 	return (
 		<header className='flex items-center justify-between px-24 py-12'>
-			<StyledLink
-				to='/create'
-				description='create new your own airdrop'
-			>
-				Create Airdrop
-			</StyledLink>
-			<StyledLink
-				to='/find'
-				description='find airdrops'
-			>
-				Find
-			</StyledLink>
+			<div className='flex'>
+				<StyledLink
+					to='/create'
+					description='create new your own airdrop'
+				>
+					Create Airdrop
+				</StyledLink>
+
+				<StyledLink
+					to='/find'
+					description='find airdrops'
+				>
+					Find
+				</StyledLink>
+			</div>
+
 			<ConnectButton />
 		</header>
 	);
