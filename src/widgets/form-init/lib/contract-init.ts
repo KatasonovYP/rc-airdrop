@@ -27,8 +27,14 @@ export function contractInit(
 			{ ...parameters },
 			LP_RAW_SCHEMA,
 		)
-		.then((result) => {
-			console.log('result', result);
+		.then((transactionHash) => {
+			console.log('transactionHash', transactionHash);
+			return connection
+				.getJsonRpcClient()
+				.getTransactionStatus(transactionHash);
+		})
+		.then((transactionStatus) => {
+			console.log(transactionStatus);
 		})
 		.catch((error) => {
 			console.error('init error', error);
