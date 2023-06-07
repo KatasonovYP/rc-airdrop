@@ -5,6 +5,7 @@ import { Home } from 'pages/home';
 import { Create } from 'pages/create';
 import { Claim } from 'pages/claim';
 import { NotFound } from 'pages/not-found';
+import { Transactions } from 'pages/transactions';
 
 export const routeConfig: Record<AppRoutes, RouteProps> = {
 	[AppRoutes.HOME]: {
@@ -18,6 +19,10 @@ export const routeConfig: Record<AppRoutes, RouteProps> = {
 	[AppRoutes.FIND]: {
 		path: RoutePath[AppRoutes.FIND],
 		element: <Find />,
+	},
+	[AppRoutes.TRANSACTIONS]: {
+		path: RoutePath[AppRoutes.TRANSACTIONS],
+		element: <Transactions />,
 	},
 	[AppRoutes.CLAIM]: {
 		path: `${RoutePath[AppRoutes.CLAIM]}/:index/:subindex`,
