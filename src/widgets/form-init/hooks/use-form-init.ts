@@ -5,8 +5,11 @@ import { useWatchFiles } from 'widgets/form-init/hooks/use-watch-files.ts';
 import { useContractInit } from 'widgets/form-init/hooks/use-contract-init.ts';
 import { Metadata } from 'widgets/form-init/model/metadata.ts';
 import { useConcordiumApi } from 'shared/hooks/use-concordium-api.ts';
-import { AirdropTransactionInit } from 'entities/transaction-card';
-import { LOCAL_STORAGE_KEY_AIRDROP_TRANSACTIONS_INIT } from 'shared/config/local-storage.ts';
+import { AirdropTransactionInit } from 'entities/transaction-init-card';
+import {
+	LOCAL_STORAGE_KEY_AIRDROP_TRANSACTIONS_INIT,
+	LOCAL_STORAGE_KEY_WHITELIST,
+} from 'shared/config/local-storage.ts';
 
 export function useFormInit() {
 	const {
@@ -34,7 +37,7 @@ export function useFormInit() {
 		console.log('whitelist', whitelist);
 		console.log('data', new Date(storedData['airdrop end time']).getTime());
 
-		localStorage.setItem('whitelist', whitelist);
+		localStorage.setItem(LOCAL_STORAGE_KEY_WHITELIST, whitelist);
 
 		contractInit(
 			whitelist !== '' ? whitelist.split(',') : [],

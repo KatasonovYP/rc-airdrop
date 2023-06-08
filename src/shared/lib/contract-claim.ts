@@ -7,15 +7,19 @@ import {
 import { WalletConnection } from '@concordium/react-components';
 import { create_hash_tree, get_hash_proof } from 'shared/lib/merkle-tree';
 import { SHA256 } from 'crypto-js';
+import { LOCAL_STORAGE_KEY_WHITELIST } from 'shared/config/local-storage.ts';
 
 export function contractClaim(
 	connection: WalletConnection,
 	account: string,
 	index: number,
 	subindex: number,
-) {
+	selectedToken: number,
+): Promise<string> {
 	// TODO: put the tree logic in a separate module
-	const whitelist = localStorage.getItem('whitelist')?.split(',');
+	const whitelist = localStorage
+		.getItem(LOCAL_STORAGE_KEY_WHITELIST)
+		?.split(',');
 	console.log('using whitelist:', whitelist);
 	if (!whitelist) {
 		throw new Error('no stored whitelist');
@@ -36,30 +40,23 @@ export function contractClaim(
 		console.error('build tree error');
 	}
 
-	connection
-		.signAndSendTransaction(
-			account,
-			AccountTransactionType.Update,
-			{
-				amount: new CcdAmount(BigInt(0)),
-				address: {
-					index: BigInt(index),
-					subindex: BigInt(subindex),
-				},
-				receiveName: `${CONTRACT_NAME}.claim_nft`,
-				maxContractExecutionEnergy: MAX_CONTRACT_EXECUTION_ENERGY,
+	return connection.signAndSendTransaction(
+		account,
+		AccountTransactionType.Update,
+		{
+			amount: new CcdAmount(BigInt(0)),
+			address: {
+				index: BigInt(index),
+				subindex: BigInt(subindex),
 			},
-			{
-				proof: proof ?? [],
-				node: account,
-				selected_token: '00000000',
-			},
-			LP_RAW_SCHEMA,
-		)
-		.then((transactionHash) => {
-			console.log('transactionHash', transactionHash);
-		})
-		.catch((error) => {
-			console.error('view error', error);
-		});
+			receiveName: `${CONTRACT_NAME}.claim_nft`,
+			maxContractExecutionEnergy: MAX_CONTRACT_EXECUTION_ENERGY,
+		},
+		{
+			proof: proof ?? [],
+			node: account,
+			selected_token: selectedToken.toString().padStart(8, '0'),
+		},
+		LP_RAW_SCHEMA,
+	);
 }

@@ -3,6 +3,7 @@ import { FormFindProps } from '../model/form-find-props.ts';
 import { type SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { RoutePath } from 'shared/config/route.ts';
+import { LOCAL_STORAGE_KEY_LAST_CONTRACT_INDEX } from 'shared/config/local-storage.ts';
 
 export function useFormFind() {
 	const {
@@ -29,6 +30,10 @@ export function useFormFind() {
 			.getInstanceInfo(address);
 
 		if (instanceInfo !== undefined) {
+			localStorage.setItem(
+				LOCAL_STORAGE_KEY_LAST_CONTRACT_INDEX,
+				address.index.toString(),
+			);
 			navigate(`${RoutePath.claim}/${address.index}/${address.subindex}`);
 		} else {
 			console.error('contract not exist');

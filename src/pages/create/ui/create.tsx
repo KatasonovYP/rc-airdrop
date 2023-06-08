@@ -9,6 +9,7 @@ export default function Create() {
 					<img
 						src='/nft.png'
 						alt=''
+						loading='lazy'
 						width={512}
 						height={512}
 					/>

@@ -6,5 +6,9 @@ interface TextAlertProps {
 }
 
 export const TextAlert: FC<TextAlertProps> = ({ className, children }) => {
-	return <p className={`${className} text-xl text-red-500`}>{children}</p>;
+	return (
+		<p className={`${className} text-xl font-semibold text-red-500`}>
+			{children}
+		</p>
+	);
 };

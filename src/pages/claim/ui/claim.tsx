@@ -1,19 +1,6 @@
-import { useParams } from 'react-router-dom';
-import { contractClaim } from 'shared/lib/contract-claim.ts';
-import { useConcordiumApi } from 'shared/hooks/use-concordium-api.ts';
-import { StyledButton } from 'shared/components/styled-button';
+import { FormClaim } from 'widgets/form-claim';
 
 export default function Claim() {
-	const { index, subindex } = useParams();
-	const { connection, account } = useConcordiumApi();
-
-	function claimHandler() {
-		if (!connection || !account || !index || !subindex) {
-			return;
-		}
-		contractClaim(connection, account, +index, +subindex);
-	}
-
 	return (
 		<main className='flex min-h-max flex-col items-center justify-between px-24 py-12'>
 			<div className='grid grid-cols-2 gap-12'>
@@ -21,6 +8,7 @@ export default function Claim() {
 					<img
 						src='/nft.png'
 						alt=''
+						loading='lazy'
 						width={512}
 						height={512}
 					/>
@@ -28,12 +16,7 @@ export default function Claim() {
 				<div className='grid grid-cols-2 gap-4'>
 					<p>perfect name</p>
 					<p>awesome description</p>
-					<StyledButton
-						onClick={claimHandler}
-						description={''}
-					>
-						Claim
-					</StyledButton>
+					<FormClaim />
 				</div>
 			</div>
 		</main>
