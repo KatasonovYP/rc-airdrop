@@ -37,11 +37,8 @@ export const TransactionsInitList: FC<TransactionsInitListProps> = ({
 					<TextAlert>No Init Transactions</TextAlert>
 				)}
 				{transactions.map((transaction, key) => (
-					<li>
-						<TransactionInitCard
-							key={key}
-							{...transaction}
-						/>
+					<li key={key}>
+						<TransactionInitCard {...transaction} />
 					</li>
 				))}
 			</ul>

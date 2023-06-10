@@ -20,8 +20,6 @@ export const TransactionsClaimList: FC<TransactionsClaimListProps> = ({
 			'[]',
 	);
 
-	console.log(transactions);
-
 	transactions.forEach((transaction) => {
 		transaction.claimDate = new Date(transaction.claimDate);
 		transaction.selectedToken = +transaction.selectedToken;
@@ -36,11 +34,8 @@ export const TransactionsClaimList: FC<TransactionsClaimListProps> = ({
 					<TextAlert>No Claim Transactions</TextAlert>
 				)}
 				{transactions.map((transaction, key) => (
-					<li>
-						<TransactionClaimCard
-							key={key}
-							{...transaction}
-						/>
+					<li key={key}>
+						<TransactionClaimCard {...transaction} />
 					</li>
 				))}
 			</ul>

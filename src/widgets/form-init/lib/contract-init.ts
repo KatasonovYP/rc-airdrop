@@ -6,7 +6,7 @@ import {
 	MODULE_REFERENCE,
 } from 'shared/config';
 import { WalletConnection } from '@concordium/react-components';
-import { ContractInitParameters } from 'widgets/form-init/model/contract-init-parameters.ts';
+import { ContractInitParameters } from '../model/contract-init-parameters';
 
 export function contractInit(
 	connection: WalletConnection,

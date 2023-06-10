@@ -1,9 +1,10 @@
 export interface AirdropTransactionInit {
 	initDate: Date;
-	metadata: string;
-	whitelist: string;
+	metadataUrl: string;
+	whitelistUrl: string;
 	nftLimit: number;
 	reserve: number;
+	nftLimitPerAddress: number;
 	endTime: Date;
 	selectedIndex: boolean;
 	hash: string;

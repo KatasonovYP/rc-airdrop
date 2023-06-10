@@ -12,7 +12,7 @@ export const FormFind: FC = () => {
 	const { isAuth } = useAuth();
 
 	const index = Number.parseInt(
-		localStorage.getItem(LOCAL_STORAGE_KEY_LAST_CONTRACT_INDEX) || '4444',
+		localStorage.getItem(LOCAL_STORAGE_KEY_LAST_CONTRACT_INDEX) || '4878',
 	);
 
 	return (

@@ -1,0 +1,60 @@
+.inputFile {
+  position: relative;
+  display: inline-block;
+  max-width: fit-content;
+}
+
+.inputFileButton {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  outline: none;
+  text-decoration: none;
+  font-size: 14px;
+  vertical-align: middle;
+  color: rgb(255 255 255);
+  text-align: center;
+  border-radius: 4px;
+  @apply bg-blue-500;
+  line-height: 22px;
+  height: 40px;
+  padding: 10px 20px;
+  box-sizing: border-box;
+  border: none;
+  margin: 0;
+  transition: background-color 0.2s;
+}
+
+.inputFileText {
+  padding: 0 10px;
+  line-height: 40px;
+  display: inline-block;
+}
+
+.inputFile input[type=file] {
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+  display: block;
+  width: 0;
+  height: 0;
+}
+
+/* Focus */
+.inputFile input[type=file]:focus + .inputFileButton {
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, .25);
+}
+
+/* Hover/active */
+.inputFileButton:hover {
+  @apply bg-blue-400;
+}
+
+.inputFileButton:active {
+  @apply bg-blue-500;
+}
+
+/* Disabled */
+.inputFile input[type=file]:disabled + .inputFileButton {
+  background-color: #eee;
+}

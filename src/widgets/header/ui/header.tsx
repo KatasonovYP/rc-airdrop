@@ -32,6 +32,13 @@ export const AirdropHeader: FC = () => {
 				>
 					Transactions
 				</StyledLink>
+
+				<StyledLink
+					to={RoutePath.main}
+					description='go home'
+				>
+					Home
+				</StyledLink>
 			</div>
 
 			<ConnectButton />

@@ -12,41 +12,20 @@ export const FormInit: FC = () => {
 
 	const { isAuth } = useAuth();
 
+	const date = new Date();
+	const futureDate = date.getDate() + 3;
+	date.setDate(futureDate);
+	const defaultDate = date.toLocaleDateString('en-CA');
+
 	return (
 		<form onSubmit={handleAction}>
 			<div className='flex flex-col gap-4'>
-				<div className='flex gap-4'>
-					<p>Metadata: </p>
-					<input
-						type='file'
-						placeholder={`Input whitelist`}
-						accept='.json'
-						{...register('metadata', { required: true })}
-					/>
-				</div>
-				{errors.metadata?.type === 'required' && (
-					<TextAlert>Metadata is Required</TextAlert>
-				)}
-
-				<div className='flex gap-4'>
-					<p>Whitelist Accounts: </p>
-					<input
-						type='file'
-						placeholder={`Input whitelist`}
-						accept='.txt'
-						{...register('whitelist', { required: true })}
-					/>
-				</div>
-				{errors.whitelist?.type === 'required' && (
-					<TextAlert>Whitelist is Required</TextAlert>
-				)}
-
 				<InputNumber
 					{...{
 						register,
 						errors,
-						name: 'max token amount',
-						defaultValue: 0,
+						name: 'nft limit',
+						defaultValue: 10,
 					}}
 				/>
 
@@ -54,8 +33,17 @@ export const FormInit: FC = () => {
 					{...{
 						register,
 						errors,
-						name: 'max number of claims',
-						defaultValue: 0,
+						name: 'reserve',
+						defaultValue: 3,
+					}}
+				/>
+
+				<InputNumber
+					{...{
+						register,
+						errors,
+						name: 'nft limit per address',
+						defaultValue: 3,
 					}}
 				/>
 
@@ -63,11 +51,11 @@ export const FormInit: FC = () => {
 					<p>airdrop end time</p>
 					<input
 						type='date'
-						defaultValue={'2023-06-10'}
-						{...register('airdrop end time', { required: true })}
+						defaultValue={defaultDate}
+						{...register('nft time limit', { required: true })}
 					/>
 				</div>
-				{errors['airdrop end time']?.type === 'required' && (
+				{errors['nft time limit']?.type === 'required' && (
 					<TextAlert>airdrop end time is required</TextAlert>
 				)}
 

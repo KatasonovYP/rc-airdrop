@@ -23,6 +23,15 @@ export const FormClaim: FC = () => {
 					}}
 				/>
 
+				<InputNumber
+					{...{
+						register,
+						errors,
+						name: 'amount of tokens',
+						defaultValue: 1,
+					}}
+				/>
+
 				<StyledButton
 					type='submit'
 					disabled={!isAuth}

@@ -18,7 +18,6 @@ export function useFormFind() {
 	const onAction: SubmitHandler<FormFindProps> = async (
 		data,
 	): Promise<void> => {
-		console.log(data);
 		// TODO: make error handler
 		if (!connection || !account) return;
 		const address = {
