@@ -7,4 +7,5 @@ export const LOCAL_STORAGE_KEY_AIRDROP_TRANSACTIONS_CLAIM =
 export const LOCAL_STORAGE_KEY_LAST_CONTRACT_INDEX =
 	'airdrop-last-contract-index';
 
-export const LOCAL_STORAGE_KEY_WHITELIST = 'airdrop-whitelist';
+export const LOCAL_STORAGE_KEY_RAW_SCHEMA = 'airdrop-raw-schema';
+export const LOCAL_STORAGE_KEY_MODULE_REFERENCE = 'airdrop-module-reference';

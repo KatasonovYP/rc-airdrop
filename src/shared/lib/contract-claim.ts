@@ -33,6 +33,7 @@ export async function contractClaim(
 		{
 			proof: proof,
 			node: account,
+			node_string: account,
 			selected_token: selectedToken.toString().padStart(8, '0'),
 			amount_of_tokens: amountOfTokens,
 		},

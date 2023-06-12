@@ -34,10 +34,10 @@ export const AirdropHeader: FC = () => {
 				</StyledLink>
 
 				<StyledLink
-					to={RoutePath.main}
-					description='go home'
+					to={RoutePath.settings}
+					description='configuration'
 				>
-					Home
+					Settings
 				</StyledLink>
 			</div>
 

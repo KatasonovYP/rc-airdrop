@@ -6,9 +6,19 @@ import { useAuth } from 'shared/hooks/use-auth.ts';
 import { TextAlert } from 'shared/components/text-alert';
 import { StyledButton } from 'shared/components/styled-button';
 import { TransactionHashLink } from 'shared/components/transaction-hash-link';
+import { Spinner } from 'shared/components/spinner';
+import { Link } from 'react-router-dom';
+import { RoutePath } from 'shared/config/route.ts';
 
 export const FormInit: FC = () => {
-	const { register, errors, handleAction, transactionHash } = useFormInit();
+	const {
+		register,
+		errors,
+		handleAction,
+		transactionHash,
+		isLoading,
+		createdContractId,
+	} = useFormInit();
 
 	const { isAuth } = useAuth();
 
@@ -69,12 +79,31 @@ export const FormInit: FC = () => {
 
 				<StyledButton
 					type='submit'
-					disabled={!isAuth}
+					disabled={!isAuth || isLoading}
 				>
-					{isAuth ? 'Drop' : 'please connect wallet'}
+					{isLoading ? (
+						<Spinner />
+					) : isAuth ? (
+						'Drop'
+					) : (
+						'please connect wallet'
+					)}
 				</StyledButton>
 			</div>
 			<div>
+				{transactionHash &&
+					(createdContractId ? (
+						<Link
+							className='text-blue-500 hover:text-blue-700'
+							to={`${
+								RoutePath.claim
+							}/${createdContractId.toString()}/0`}
+						>
+							{`address: <${createdContractId.toString()}, 0>`}{' '}
+						</Link>
+					) : (
+						<p>address: loading...</p>
+					))}
 				{transactionHash && (
 					<TransactionHashLink transactionHash={transactionHash} />
 				)}

@@ -13,7 +13,6 @@ export function contractInit(
 	account: string,
 	parameters: ContractInitParameters,
 ): Promise<string> {
-	console.log(parameters);
 	return connection.signAndSendTransaction(
 		account,
 		AccountTransactionType.InitContract,

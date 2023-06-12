@@ -3,10 +3,9 @@ import { FormClaimProps } from '../model/form-claim-props.ts';
 import { type SubmitHandler, useForm } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
 import { contractClaim } from 'shared/lib/contract-claim.ts';
-import { useState } from 'react';
-import { LOCAL_STORAGE_KEY_AIRDROP_TRANSACTIONS_CLAIM } from 'shared/config/local-storage.ts';
-import { AirdropTransactionClaim } from 'entities/transaction-claim-card';
+import { useEffect, useState } from 'react';
 import { contractView } from 'shared/lib/contract-view.ts';
+import { pushLocalStorageClaim } from 'shared/lib/push-local-storage-claim.ts';
 
 export function useFormClaim() {
 	const {
@@ -17,48 +16,97 @@ export function useFormClaim() {
 
 	const { connection, account } = useConcordiumApi();
 	const { index, subindex } = useParams();
-	const [transactionHash, setTransactionHash] = useState<string>('');
+	const [transactionHash, setTransactionHash] = useState<
+		string | undefined
+	>();
+	const [isLoading, setIsLoading] = useState(false);
+	const [errorCode, setErrorCode] = useState(0);
+	const [data, setData] = useState<FormClaimProps>();
 
 	const onAction: SubmitHandler<FormClaimProps> = async (
 		data,
 	): Promise<void> => {
+		setData(data);
+		setErrorCode(0);
+		setIsLoading(true);
+		setTransactionHash(undefined);
 		console.log(data);
 
 		if (!connection || !account || !index || !subindex) {
 			return;
 		}
-
-		const transactionHash = await contractClaim(
-			connection,
-			account,
-			+index,
-			+subindex,
-			+data['selected token'],
-			+data['amount of tokens'],
-		);
-		setTransactionHash(transactionHash);
-		const transactions: AirdropTransactionClaim[] = JSON.parse(
-			localStorage.getItem(
-				LOCAL_STORAGE_KEY_AIRDROP_TRANSACTIONS_CLAIM,
-			) || '[]',
-		);
-		transactions.push({
-			claimDate: new Date(),
-			hash: transactionHash,
-			whitelist: (await contractView(connection, +index)).whitelistUrl,
-			selectedToken: data['selected token'],
-			amountOfTokens: data['amount of tokens'],
-		});
-		localStorage.setItem(
-			LOCAL_STORAGE_KEY_AIRDROP_TRANSACTIONS_CLAIM,
-			JSON.stringify(transactions),
-		);
+		try {
+			const transactionHash = await contractClaim(
+				connection,
+				account,
+				+index,
+				+subindex,
+				+data['selected token'],
+				+data['amount of tokens'],
+			);
+			setTransactionHash(transactionHash);
+		} catch (error) {
+			console.error(error);
+			setIsLoading(false);
+		}
 	};
+
+	useEffect(() => {
+		Promise.resolve(checkTransaction()).catch(console.error);
+	}, [connection, transactionHash, isLoading]);
+
+	function checkTransaction() {
+		if (
+			connection &&
+			transactionHash &&
+			!errorCode &&
+			isLoading &&
+			data &&
+			index
+		) {
+			const interval = setInterval(async () => {
+				const status = await connection
+					.getJsonRpcClient()
+					.getTransactionStatus(transactionHash);
+
+				console.log('claim', status);
+
+				if (status?.status === 'finalized' && status.outcomes) {
+					const outcome = Object.values(status.outcomes)[0];
+
+					setIsLoading(false);
+					clearInterval(interval);
+					let error = 0;
+
+					if (outcome.result.outcome === 'reject') {
+						// @ts-ignore
+						const reason = outcome.result.rejectReason.rejectReason;
+						setErrorCode(reason);
+						error = reason;
+					}
+
+					pushLocalStorageClaim({
+						claimDate: new Date(),
+						hash: transactionHash,
+						whitelist: (await contractView(connection, +index))
+							.whitelistUrl,
+						selectedToken: data['selected token'],
+						amountOfTokens: data['amount of tokens'],
+						error,
+						contractIndex: +index,
+					});
+				}
+			}, 1000);
+		}
+		return null;
+	}
 
 	return {
 		register,
 		errors,
 		handleAction: handleSubmit(onAction),
 		transactionHash,
+		isLoading,
+		errorCode,
 	};
 }

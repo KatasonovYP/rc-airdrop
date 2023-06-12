@@ -8,4 +8,6 @@ export interface AirdropTransactionInit {
 	endTime: Date;
 	selectedIndex: boolean;
 	hash: string;
+	error: number;
+	contractIndex: number;
 }

@@ -5,6 +5,7 @@ export enum AppRoutes {
 	CLAIM = 'claim',
 	NOT_FOUNT = 'not-found',
 	TRANSACTIONS = 'transactions',
+	SETTINGS = 'settings',
 }
 
 export const RoutePath: Record<AppRoutes, string> = {
@@ -13,5 +14,6 @@ export const RoutePath: Record<AppRoutes, string> = {
 	[AppRoutes.FIND]: `/${AppRoutes.FIND}`,
 	[AppRoutes.CLAIM]: `/${AppRoutes.CLAIM}`,
 	[AppRoutes.TRANSACTIONS]: `/${AppRoutes.TRANSACTIONS}`,
+	[AppRoutes.SETTINGS]: `/${AppRoutes.SETTINGS}`,
 	[AppRoutes.NOT_FOUNT]: '*',
 };

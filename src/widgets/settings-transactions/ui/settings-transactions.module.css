@@ -1,0 +1,19 @@
+.settingsTransactions {
+  @apply mt-8 flex flex-col min-w-[100%];
+}
+
+.header {
+  @apply text-2xl;
+}
+
+.cleanButton {
+  @apply border-2 bg-amber-500 rounded-2xl px-4 py-2 hover:bg-amber-400 transition-colors;
+}
+
+.settingsContainer {
+  @apply mt-8 flex flex-col min-w-[100%] gap-2;
+}
+
+.settingContainer {
+  @apply flex justify-between min-w-max;
+}
