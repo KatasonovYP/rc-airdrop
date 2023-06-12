@@ -7,6 +7,8 @@ import { StyledButton } from 'shared/components/styled-button';
 import { TransactionHashLink } from 'shared/components/transaction-hash-link';
 import { Spinner } from 'shared/components/spinner';
 import { getErrorMessage } from 'shared/lib/get-error-message.ts';
+import { TextSuccess } from 'shared/components/text-success';
+import { TextAlert } from 'shared/components/text-alert';
 
 export const FormClaim: FC = () => {
 	const {
@@ -57,9 +59,9 @@ export const FormClaim: FC = () => {
 					(isLoading ? (
 						<p>status: loading...</p>
 					) : errorCode ? (
-						<p>{getErrorMessage(errorCode)}</p>
+						<TextAlert>{getErrorMessage(errorCode)}</TextAlert>
 					) : (
-						<p>Success</p>
+						<TextSuccess>Success</TextSuccess>
 					))}
 				{transactionHash && (
 					<TransactionHashLink transactionHash={transactionHash} />
