@@ -22,7 +22,7 @@ const storedModuleReference = sessionStorage.getItem(
 );
 
 export const DEFAULT_RAW_MODULE_REFERENCE =
-	'78d89398f3e820c50932ab848c90665e080b9bfc4ca1b4cb2dcb92c66254ec7f';
+	'0edbd695743789ac415289c31391ec66e66958efbaa1ea826b37ddcdeea74e7e';
 
 export const RAW_MODULE_REFERENCE =
 	storedModuleReference ?? DEFAULT_RAW_MODULE_REFERENCE;

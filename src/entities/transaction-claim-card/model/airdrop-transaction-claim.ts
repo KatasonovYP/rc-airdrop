@@ -1,6 +1,7 @@
 export interface AirdropTransactionClaim {
 	claimDate: Date;
-	whitelist: string;
+	whitelistUrl: string;
+	isOnWhitelist: boolean;
 	selectedToken: number;
 	amountOfTokens: number;
 	hash: string;

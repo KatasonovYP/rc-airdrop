@@ -4,8 +4,8 @@ import { type SubmitHandler, useForm } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
 import { contractClaim } from 'shared/lib/contract-claim.ts';
 import { useEffect, useState } from 'react';
-import { contractView } from 'shared/lib/contract-view.ts';
 import { pushLocalStorageClaim } from 'shared/lib/push-local-storage-claim.ts';
+import { checkWhitelist } from 'shared/lib/use-check-whitelist.ts';
 
 export function useFormClaim() {
 	const {
@@ -30,7 +30,6 @@ export function useFormClaim() {
 		setErrorCode(0);
 		setIsLoading(true);
 		setTransactionHash(undefined);
-		console.log(data);
 
 		if (!connection || !account || !index || !subindex) {
 			return;
@@ -62,7 +61,8 @@ export function useFormClaim() {
 			!errorCode &&
 			isLoading &&
 			data &&
-			index
+			index &&
+			account
 		) {
 			const interval = setInterval(async () => {
 				const status = await connection
@@ -84,12 +84,14 @@ export function useFormClaim() {
 						setErrorCode(reason);
 						error = reason;
 					}
+					const { whitelistUrl, isOnWhitelist } =
+						await checkWhitelist(connection, +index, account);
 
 					pushLocalStorageClaim({
 						claimDate: new Date(),
 						hash: transactionHash,
-						whitelist: (await contractView(connection, +index))
-							.whitelistUrl,
+						whitelistUrl,
+						isOnWhitelist,
 						selectedToken: data['selected token'],
 						amountOfTokens: data['amount of tokens'],
 						error,
