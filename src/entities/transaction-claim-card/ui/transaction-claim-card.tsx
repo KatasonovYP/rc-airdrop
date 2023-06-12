@@ -28,8 +28,9 @@ export const TransactionClaimCard: FC<AirdropTransactionClaim> = (
 			</p>
 			<IpfsCidLink
 				name='whitelist'
-				link={transaction.whitelist}
+				link={transaction.whitelistUrl}
 			/>
+			<p>is on whitelist: {String(transaction.isOnWhitelist)}</p>
 			<p>selected index: {String(transaction.selectedToken)}</p>
 			<p>amount of tokens: {String(transaction.amountOfTokens)}</p>
 			<p>

@@ -12,14 +12,9 @@ export async function getProof(
 	const contractState = await contractView(connection, +index);
 	const whitelistRaw = (await axios.get(contractState.whitelistUrl)).data;
 	const whitelist = whitelistRaw?.split(',');
-	// const whitelist = localStorage
-	// 	.getItem(LOCAL_STORAGE_KEY_WHITELIST)
-	// 	?.split(',');
-
-	console.log('using whitelist:', whitelist);
 
 	if (!whitelist) {
-		throw new Error('no stored whitelist');
+		throw new Error('no fetched whitelistUrl');
 	}
 
 	const tree = create_hash_tree(whitelist);

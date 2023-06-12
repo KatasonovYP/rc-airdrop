@@ -16,7 +16,6 @@ export async function contractClaim(
 	amountOfTokens: number,
 ): Promise<string> {
 	const proof = await getProof(connection, account, index);
-	console.log(proof);
 
 	return connection.signAndSendTransaction(
 		account,
