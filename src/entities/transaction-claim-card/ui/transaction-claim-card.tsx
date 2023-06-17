@@ -11,7 +11,7 @@ export const TransactionClaimCard: FC<AirdropTransactionClaim> = (
 ) => {
 	return (
 		<div
-			className={`p-4 border-2 border-slate-400 rounded-lg ${
+			className={`p-4 border-[1px] border-gray-800 rounded-lg ${
 				transaction.error ? 'bg-red-50' : 'bg-green-50'
 			}`}
 		>

@@ -27,21 +27,37 @@ export const InputNumber: customFC = <T extends FieldValues>(
 	props: NumberInputProperties<T>,
 ) => {
 	const { name, register, errors, defaultValue, className } = props;
+
 	return (
-		<div className={classNames(cls.inputBox, className)}>
-			<input
-				type='text'
-				required={true}
-				defaultValue={defaultValue}
-				{...register(name, { required: true, pattern: numberRegExp })}
-			/>
-			<span>{name}</span>
-			{errors[name]?.type === 'required' && (
-				<TextAlert>Field {name} is required</TextAlert>
-			)}
-			{errors[name]?.type === 'pattern' && (
-				<TextAlert>Input correct number</TextAlert>
-			)}
+		<div className={classNames(className, 'flex gap-2 flex-wrap')}>
+			<div className={cls.inputBox}>
+				<input
+					type='number'
+					required={true}
+					defaultValue={defaultValue}
+					{...register(name, {
+						required: true,
+						pattern: numberRegExp,
+						min: 0,
+						max: 10_000,
+					})}
+				/>
+				<span>{name}</span>
+			</div>
+			<div className='self-center'>
+				{errors[name]?.type === 'required' && (
+					<TextAlert>{name} is required</TextAlert>
+				)}
+				{errors[name]?.type === 'pattern' && (
+					<TextAlert>Input correct {name}</TextAlert>
+				)}
+				{errors[name]?.type === 'min' && (
+					<TextAlert>The min {name} is 0</TextAlert>
+				)}
+				{errors[name]?.type === 'max' && (
+					<TextAlert>The max {name} is 10000</TextAlert>
+				)}
+			</div>
 		</div>
 	);
 };

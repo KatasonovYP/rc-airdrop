@@ -2,10 +2,10 @@ import axios from 'axios';
 import { IPFS_URL } from 'shared/config/urls.ts';
 
 export async function postIpfs(file: File): Promise<string> {
-	try {
-		const formData = new FormData();
-		formData.append('file', file);
+	const formData = new FormData();
+	formData.append('file', file);
 
+	try {
 		const resFile = await axios({
 			method: 'post',
 			url: 'https://api.pinata.cloud/pinning/pinFileToIPFS',

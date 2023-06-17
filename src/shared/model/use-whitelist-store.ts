@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+import { IPFS_URL } from 'shared/config/urls.ts';
 
 interface State {
 	whitelist: string | undefined;
@@ -14,8 +15,8 @@ type IStore = State & Actions;
 
 export const useWhitelistStore = create<IStore>(
 	(set): IStore => ({
-		whitelist: undefined,
-		whitelistUrl: undefined,
+		whitelist: '',
+		whitelistUrl: `${IPFS_URL}/QmbFMke1KXqnYyBBWxB74N4c5SBnJMVAiMNRcGu6x1AwQH`,
 
 		setWhitelist(whitelist) {
 			set({ whitelist });

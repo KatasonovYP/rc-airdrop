@@ -1,5 +1,6 @@
 import { FC, ReactNode } from 'react';
 import { Link } from 'react-router-dom';
+import { ArrowRightIcon } from '@heroicons/react/24/outline';
 
 interface Properties {
 	children: ReactNode;
@@ -15,8 +16,8 @@ export const StyledLink: FC<Properties> = ({ children, to, description }) => {
 		>
 			<h2 className={`mb-3 text-2xl font-semibold`}>
 				{children}{' '}
-				<span className='inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none'>
-					-&gt;
+				<span className='inline-block align-bottom transition-transform group-hover:translate-x-1 motion-reduce:transform-none'>
+					<ArrowRightIcon className='h-7 w-7' />
 				</span>
 			</h2>
 			<p className={`m-0 max-w-[30ch] text-sm opacity-50`}>

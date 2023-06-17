@@ -1,7 +1,7 @@
 .inputBox {
 	position: relative;
-	width: 250px;
-	margin: 16px 0;
+	width: 16rem;
+  margin-top: 8px;
 }
 
 .inputBox input {

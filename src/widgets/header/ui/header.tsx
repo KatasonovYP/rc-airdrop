@@ -10,13 +10,13 @@ export const AirdropHeader: FC = () => {
 
 	useEffect(() => setActiveConnectorType(BROWSER_WALLET), []);
 	return (
-		<header className='flex items-center justify-between px-24 py-12'>
-			<div className='flex gap-4'>
+		<header className='flex gap-4 items-start justify-between px-24 py-12'>
+			<div className='flex gap-4 items-start'>
 				<StyledLink
 					to={RoutePath.create}
 					description='create new your own airdrop'
 				>
-					Create Airdrop
+					Create
 				</StyledLink>
 
 				<StyledLink

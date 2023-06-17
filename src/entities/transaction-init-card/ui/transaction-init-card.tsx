@@ -11,7 +11,7 @@ export const TransactionInitCard: FC<AirdropTransactionInit> = (
 ) => {
 	return (
 		<div
-			className={`flex flex-col gap-1 p-4 border-2 border-slate-400 bg-gray-100 rounded-lg ${
+			className={`flex flex-col gap-1 p-4 border-[1px] border-gray-800 bg-gray-100 rounded-lg ${
 				transaction.error ? 'bg-red-50' : 'bg-green-50'
 			}`}
 		>

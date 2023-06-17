@@ -4,11 +4,8 @@ import { useFormClaim } from '../hooks/use-form-claim.ts';
 import { InputNumber } from 'features/input-number';
 import { useAuth } from 'shared/hooks/use-auth.ts';
 import { StyledButton } from 'shared/components/styled-button';
-import { TransactionHashLink } from 'shared/components/transaction-hash-link';
 import { Spinner } from 'shared/components/spinner';
-import { getErrorMessage } from 'shared/lib/get-error-message.ts';
-import { TextSuccess } from 'shared/components/text-success';
-import { TextAlert } from 'shared/components/text-alert';
+import { StatusTransactionClaim } from 'features/status-transaction-claim';
 
 export const FormClaim: FC = () => {
 	const {
@@ -24,15 +21,15 @@ export const FormClaim: FC = () => {
 
 	return (
 		<form onSubmit={handleAction}>
-			<div>
-				<InputNumber
-					{...{
-						register,
-						errors,
-						name: 'selected token',
-						defaultValue: 0,
-					}}
-				/>
+			<div className='flex flex-col gap-4'>
+				{/*<InputNumber*/}
+				{/*	{...{*/}
+				{/*		register,*/}
+				{/*		errors,*/}
+				{/*		name: 'selected token',*/}
+				{/*		defaultValue: 0,*/}
+				{/*	}}*/}
+				{/*/>*/}
 
 				<InputNumber
 					{...{
@@ -45,26 +42,24 @@ export const FormClaim: FC = () => {
 
 				<StyledButton
 					type='submit'
+					icon={null}
 					disabled={!isAuth}
 				>
 					{isLoading ? (
-						<Spinner />
+						<Spinner variant='xs' />
 					) : isAuth ? (
 						'Claim token'
 					) : (
 						'need to connect'
 					)}
 				</StyledButton>
-				{transactionHash &&
-					(isLoading ? (
-						<p>status: loading...</p>
-					) : errorCode ? (
-						<TextAlert>{getErrorMessage(errorCode)}</TextAlert>
-					) : (
-						<TextSuccess>Success</TextSuccess>
-					))}
+
 				{transactionHash && (
-					<TransactionHashLink transactionHash={transactionHash} />
+					<StatusTransactionClaim
+						transactionHash={transactionHash}
+						isLoading={isLoading}
+						errorCode={errorCode}
+					/>
 				)}
 			</div>
 		</form>
