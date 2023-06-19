@@ -39,7 +39,7 @@ export const InputNumber: customFC = <T extends FieldValues>(
 						required: true,
 						pattern: numberRegExp,
 						min: 0,
-						max: 10_000,
+						max: 100_000,
 					})}
 				/>
 				<span>{name}</span>
@@ -55,7 +55,7 @@ export const InputNumber: customFC = <T extends FieldValues>(
 					<TextAlert>The min {name} is 0</TextAlert>
 				)}
 				{errors[name]?.type === 'max' && (
-					<TextAlert>The max {name} is 10000</TextAlert>
+					<TextAlert>The max {name} is 100'000</TextAlert>
 				)}
 			</div>
 		</div>
