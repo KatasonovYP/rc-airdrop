@@ -5,11 +5,17 @@ import { Home } from 'pages/home';
 import { Create } from 'pages/create';
 import { Claim } from 'pages/claim';
 import { NotFound } from 'pages/not-found';
+import { Transactions } from 'pages/transactions';
+import { Settings } from 'pages/settings';
 
 export const routeConfig: Record<AppRoutes, RouteProps> = {
 	[AppRoutes.HOME]: {
 		path: RoutePath[AppRoutes.HOME],
 		element: <Home />,
+	},
+	[AppRoutes.SETTINGS]: {
+		path: RoutePath[AppRoutes.SETTINGS],
+		element: <Settings />,
 	},
 	[AppRoutes.CREATE]: {
 		path: RoutePath[AppRoutes.CREATE],
@@ -18,6 +24,10 @@ export const routeConfig: Record<AppRoutes, RouteProps> = {
 	[AppRoutes.FIND]: {
 		path: RoutePath[AppRoutes.FIND],
 		element: <Find />,
+	},
+	[AppRoutes.TRANSACTIONS]: {
+		path: RoutePath[AppRoutes.TRANSACTIONS],
+		element: <Transactions />,
 	},
 	[AppRoutes.CLAIM]: {
 		path: `${RoutePath[AppRoutes.CLAIM]}/:index/:subindex`,

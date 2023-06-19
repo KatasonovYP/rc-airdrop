@@ -1,7 +1,9 @@
 export interface FormInitProps {
 	whitelist: FileList;
 	metadata: FileList;
-	'max token amount': number;
-	'max number of claims': number;
-	'airdrop end time': Date;
+	'nft limit': number;
+	reserve: number;
+	'nft limit per address': number;
+	'nft time limit': Date;
+	'selected index': boolean;
 }

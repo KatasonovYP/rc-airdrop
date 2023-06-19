@@ -5,61 +5,37 @@ import {
 	MAX_CONTRACT_EXECUTION_ENERGY,
 } from '../config';
 import { WalletConnection } from '@concordium/react-components';
-import { create_hash_tree, get_hash_proof } from 'shared/lib/merkle-tree';
-import { SHA256 } from 'crypto-js';
+import { getProof } from 'shared/lib/get-proof.ts';
 
-export function contractClaim(
+export async function contractClaim(
 	connection: WalletConnection,
 	account: string,
 	index: number,
 	subindex: number,
-) {
-	// TODO: put the tree logic in a separate module
-	const whitelist = localStorage.getItem('whitelist')?.split(',');
-	console.log('using whitelist:', whitelist);
-	if (!whitelist) {
-		throw new Error('no stored whitelist');
-	}
-	const tree = create_hash_tree(whitelist);
-	let proof: string[] | undefined;
-	if (tree) {
-		console.log('tree', tree);
-		const hashed = SHA256(account).toString();
-		try {
-			proof = get_hash_proof(hashed, tree);
-			console.log('success proof');
-		} catch (error) {
-			console.error('error proof');
-			console.error(error);
-		}
-	} else {
-		console.error('build tree error');
-	}
+	selectedToken: number,
+	amountOfTokens: number,
+): Promise<string> {
+	const proof = await getProof(connection, account, index);
 
-	connection
-		.signAndSendTransaction(
-			account,
-			AccountTransactionType.Update,
-			{
-				amount: new CcdAmount(BigInt(0)),
-				address: {
-					index: BigInt(index),
-					subindex: BigInt(subindex),
-				},
-				receiveName: `${CONTRACT_NAME}.claim_nft`,
-				maxContractExecutionEnergy: MAX_CONTRACT_EXECUTION_ENERGY,
+	return connection.signAndSendTransaction(
+		account,
+		AccountTransactionType.Update,
+		{
+			amount: new CcdAmount(BigInt(0)),
+			address: {
+				index: BigInt(index),
+				subindex: BigInt(subindex),
 			},
-			{
-				proof: proof ?? [],
-				node: account,
-				selected_token: '00000000',
-			},
-			LP_RAW_SCHEMA,
-		)
-		.then((transactionHash) => {
-			console.log('transactionHash', transactionHash);
-		})
-		.catch((error) => {
-			console.error('view error', error);
-		});
+			receiveName: `${CONTRACT_NAME}.claim_nft`,
+			maxContractExecutionEnergy: MAX_CONTRACT_EXECUTION_ENERGY,
+		},
+		{
+			proof: proof,
+			node: account,
+			node_string: account,
+			selected_token: selectedToken.toString().padStart(8, '0'),
+			amount_of_tokens: amountOfTokens,
+		},
+		LP_RAW_SCHEMA,
+	);
 }

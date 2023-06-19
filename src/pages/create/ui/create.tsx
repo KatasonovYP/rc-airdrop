@@ -1,19 +1,21 @@
 import { FormInit } from 'widgets/form-init';
+import { FormMetadata } from 'features/form-metadata';
+import { useMetadataStore } from 'shared/model/use-metadata-store.ts';
+import { FormWhitelist } from 'features/form-whitelist';
+import { NftCard } from 'entities/nft-card/ui/nft-card.tsx';
+import { NftCardSkeleton } from 'entities/nft-card';
 
 export default function Create() {
+	const metadata = useMetadataStore((state) => state.metadata);
 	return (
-		<main className='flex min-h-max flex-col items-center justify-between px-24 py-12'>
-			<div className='grid grid-cols-2 gap-12'>
+		<main className='grid grid-cols-2 gap-12'>
+			<div className='flex flex-col gap-4'>
+				<FormMetadata />
+				<FormWhitelist />
 				<FormInit />
-				<div>
-					<img
-						src='/public/nft.png'
-						alt=''
-						width={512}
-						height={512}
-					/>
-				</div>
 			</div>
+
+			{metadata ? <NftCard metadata={metadata} /> : <NftCardSkeleton />}
 		</main>
 	);
 }

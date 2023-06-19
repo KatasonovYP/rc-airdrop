@@ -4,8 +4,9 @@ import classNames from 'classnames';
 
 interface SpinnerProps {
 	className?: string;
+	variant?: 'xs' | 'sm' | 'md' | 'lg';
 }
 
-export const Spinner: FC<SpinnerProps> = ({ className }) => {
-	return <div className={classNames(cls.spinner, className)} />;
+export const Spinner: FC<SpinnerProps> = ({ className, variant = 'md' }) => {
+	return <div className={classNames(cls.spinner, cls[variant], className)} />;
 };

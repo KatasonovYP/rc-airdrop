@@ -1,37 +1,16 @@
-import { AccountTransactionType, CcdAmount } from '@concordium/web-sdk';
-import {
-	CONTRACT_NAME,
-	LP_RAW_SCHEMA,
-	MAX_CONTRACT_EXECUTION_ENERGY,
-} from '../config';
+import { CONTRACT_NAME } from '../config';
 import { WalletConnection } from '@concordium/react-components';
+import { decodeView } from 'shared/lib/buffer.ts';
+import { ContractState } from 'shared/model/contract-state.ts';
 
-export function contractView(
+export async function contractView(
 	connection: WalletConnection,
-	account: string,
 	index: number,
-	subindex: number,
-) {
-	connection
-		.signAndSendTransaction(
-			account,
-			AccountTransactionType.Update,
-			{
-				amount: new CcdAmount(BigInt(0)),
-				address: {
-					index: BigInt(index),
-					subindex: BigInt(subindex),
-				},
-				receiveName: `${CONTRACT_NAME}.view`,
-				maxContractExecutionEnergy: MAX_CONTRACT_EXECUTION_ENERGY,
-			},
-			{},
-			LP_RAW_SCHEMA,
-		)
-		.then((result) => {
-			console.log('result', result);
-		})
-		.catch((error) => {
-			console.error('view error', error);
-		});
+): Promise<ContractState> {
+	const encodedView = await connection.getJsonRpcClient().invokeContract({
+		contract: { index: BigInt(index), subindex: BigInt(0) },
+		method: `${CONTRACT_NAME}.view`,
+	});
+
+	return decodeView((encodedView as any).returnValue);
 }

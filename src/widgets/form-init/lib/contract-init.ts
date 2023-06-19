@@ -6,31 +6,23 @@ import {
 	MODULE_REFERENCE,
 } from 'shared/config';
 import { WalletConnection } from '@concordium/react-components';
-import { ContractInitParameters } from 'widgets/form-init/model/contract-init-parameters.ts';
+import { ContractInitParameters } from '../model/contract-init-parameters';
 
 export function contractInit(
 	connection: WalletConnection,
 	account: string,
 	parameters: ContractInitParameters,
-) {
-	console.log(parameters);
-	connection
-		.signAndSendTransaction(
-			account,
-			AccountTransactionType.InitContract,
-			{
-				amount: new CcdAmount(BigInt(0)),
-				moduleRef: MODULE_REFERENCE,
-				initName: CONTRACT_NAME,
-				maxContractExecutionEnergy: MAX_CONTRACT_EXECUTION_ENERGY,
-			},
-			{ ...parameters },
-			LP_RAW_SCHEMA,
-		)
-		.then((result) => {
-			console.log('result', result);
-		})
-		.catch((error) => {
-			console.error('init error', error);
-		});
+): Promise<string> {
+	return connection.signAndSendTransaction(
+		account,
+		AccountTransactionType.InitContract,
+		{
+			amount: new CcdAmount(BigInt(0)),
+			moduleRef: MODULE_REFERENCE,
+			initName: CONTRACT_NAME,
+			maxContractExecutionEnergy: MAX_CONTRACT_EXECUTION_ENERGY,
+		},
+		{ ...parameters },
+		LP_RAW_SCHEMA,
+	);
 }

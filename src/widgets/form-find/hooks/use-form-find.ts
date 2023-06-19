@@ -3,6 +3,8 @@ import { FormFindProps } from '../model/form-find-props.ts';
 import { type SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { RoutePath } from 'shared/config/route.ts';
+import { LOCAL_STORAGE_KEY_LAST_CONTRACT_INDEX } from 'shared/config/local-storage.ts';
+import { useState } from 'react';
 
 export function useFormFind() {
 	const {
@@ -13,12 +15,14 @@ export function useFormFind() {
 	const navigate = useNavigate();
 
 	const { connection, account } = useConcordiumApi();
-
+	const [errorMessage, setErrorMessage] = useState('');
+	const [isLoading, setIsLoading] = useState(false);
 	const onAction: SubmitHandler<FormFindProps> = async (
 		data,
 	): Promise<void> => {
-		console.log(data);
 		// TODO: make error handler
+		setIsLoading(true);
+		setErrorMessage('');
 		if (!connection || !account) return;
 		const address = {
 			index: BigInt(+data.index),
@@ -29,11 +33,22 @@ export function useFormFind() {
 			.getInstanceInfo(address);
 
 		if (instanceInfo !== undefined) {
+			localStorage.setItem(
+				LOCAL_STORAGE_KEY_LAST_CONTRACT_INDEX,
+				address.index.toString(),
+			);
 			navigate(`${RoutePath.claim}/${address.index}/${address.subindex}`);
 		} else {
-			console.error('contract not exist');
+			setErrorMessage(`<${data.index}, ${data.subindex}> not found`);
 		}
+		setIsLoading(false);
 	};
 
-	return { register, errors, handleAction: handleSubmit(onAction) };
+	return {
+		register,
+		errors,
+		handleAction: handleSubmit(onAction),
+		errorMessage,
+		isLoading,
+	};
 }

@@ -3,7 +3,7 @@ import { AirdropHeader } from 'widgets/header';
 
 function App() {
 	return (
-		<div className='min-h-screen'>
+		<div className='app'>
 			<AirdropHeader />
 			<Router />
 		</div>

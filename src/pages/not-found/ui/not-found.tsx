@@ -6,5 +6,10 @@ interface NotFoundProps {
 }
 
 export const NotFound: FC<NotFoundProps> = () => {
-	return <div className={cls.notFound}>not found</div>;
+	return (
+		<main className={cls.notFound}>
+			<h2>404</h2>
+			<p>page not found</p>
+		</main>
+	);
 };
