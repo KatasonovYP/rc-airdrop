@@ -4,8 +4,8 @@
   @apply min-w-[256px];
   @apply text-left;
   @apply max-h-fit max-w-fit;
-  @apply rounded-lg border border-transparent;
-  @apply border-gray-300 hover:bg-gray-100;
+  @apply rounded-lg border-2 border-transparent;
+  @apply border-gray-400 hover:bg-gray-100;
   @apply hover:border-gray-600;
   @apply dark:border-neutral-700 hover:dark:bg-neutral-800/30;
   @apply transition-colors;
