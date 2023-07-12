@@ -28,7 +28,7 @@ export const SettingsTransactions: FC<SettingsTransactionsProps> = ({
 			<h1 className={cls.header}>Transactions</h1>
 			<div className={cls.settingsContainer}>
 				<div className={cls.settingContainer}>
-					<p>all transactions</p>
+					<p className={cls.cleanTitle}>all transactions</p>
 					<button
 						className={cls.cleanButton}
 						onClick={cleanLocalStorageHandler}
@@ -37,7 +37,7 @@ export const SettingsTransactions: FC<SettingsTransactionsProps> = ({
 					</button>
 				</div>
 				<div className={cls.settingContainer}>
-					<p>transactions init</p>
+					<p className={cls.cleanTitle}>transactions init</p>
 					<button
 						className={cls.cleanButton}
 						onClick={cleanLocalStorageInitHandler}
@@ -46,7 +46,7 @@ export const SettingsTransactions: FC<SettingsTransactionsProps> = ({
 					</button>
 				</div>
 				<div className={cls.settingContainer}>
-					<p>transactions claim</p>
+					<p className={cls.cleanTitle}>transactions claim</p>
 					<button
 						className={cls.cleanButton}
 						onClick={cleanLocalStorageClaimHandler}
