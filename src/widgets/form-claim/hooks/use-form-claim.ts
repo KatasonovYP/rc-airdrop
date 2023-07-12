@@ -40,8 +40,8 @@ export function useFormClaim() {
 				account,
 				+index,
 				+subindex,
-				+data['selected token'] || 0,
-				+data['amount of tokens'],
+				+data['selected NFT'] || 0,
+				+data['amount of NFTs'],
 			);
 			setTransactionHash(transactionHash);
 		} catch (error) {
@@ -92,8 +92,8 @@ export function useFormClaim() {
 						hash: transactionHash,
 						whitelistUrl,
 						isOnWhitelist,
-						selectedToken: +data['selected token'] || 0,
-						amountOfTokens: +data['amount of tokens'],
+						selectedToken: +data['selected NFT'] || 0,
+						amountOfTokens: +data['amount of NFTs'],
 						error,
 						contractIndex: +index,
 					});

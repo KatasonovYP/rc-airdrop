@@ -1,4 +1,4 @@
 export interface FormClaimProps {
-	'selected token': number;
-	'amount of tokens': number;
+	'selected NFT': number;
+	'amount of NFTs': number;
 }

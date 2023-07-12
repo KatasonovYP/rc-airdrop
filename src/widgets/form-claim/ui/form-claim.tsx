@@ -26,7 +26,7 @@ export const FormClaim: FC = () => {
 				{/*	{...{*/}
 				{/*		register,*/}
 				{/*		errors,*/}
-				{/*		name: 'selected token',*/}
+				{/*		name: 'selected NFT',*/}
 				{/*		defaultValue: 0,*/}
 				{/*	}}*/}
 				{/*/>*/}
@@ -35,7 +35,7 @@ export const FormClaim: FC = () => {
 					{...{
 						register,
 						errors,
-						name: 'amount of tokens',
+						name: 'amount of NFTs',
 						defaultValue: 1,
 					}}
 				/>
@@ -48,7 +48,7 @@ export const FormClaim: FC = () => {
 					{isLoading ? (
 						<Spinner variant='xs' />
 					) : isAuth ? (
-						'Claim token'
+						'Claim NFT'
 					) : (
 						'need to connect'
 					)}
