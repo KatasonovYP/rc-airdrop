@@ -4,8 +4,11 @@ you can find on https://rc-airdrop.vercel.app
 Example dApp for showcasing how to integrate with a smart contract on the Concordium blockchain.
 The project was bootstrapped with Vite.
 
-Install
-Run `npm` in the root of the project.
+## Install
+Run installation in the root of the project.
+```bash
+npm install
+```
 
 ## Run
 Run the app in development mode with
