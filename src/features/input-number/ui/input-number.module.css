@@ -11,8 +11,8 @@
 	background: var(--background-color);
 	border-radius: 5px;
 	outline: none;
-	color: #000;
 	font-size: 1rem;
+  @apply text-black dark:text-white;
 }
 
 .inputBox span {

@@ -14,7 +14,7 @@ export const TextAlert: FC<TextAlertProps> = ({
 }) => {
 	return (
 		<p
-			className={`${className} text-xl font-semibold text-red-700 inline-flex gap-2`}
+			className={`${className} text-xl font-semibold dark:text-red-500 text-red-700 inline-flex gap-2`}
 		>
 			{icon && (
 				<span className='self-center'>

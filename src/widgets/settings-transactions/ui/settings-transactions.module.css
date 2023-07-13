@@ -3,7 +3,7 @@
 }
 
 .header {
-  @apply text-2xl;
+  @apply text-2xl text-black dark:text-white;
 }
 
 .cleanButton {
