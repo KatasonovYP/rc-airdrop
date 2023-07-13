@@ -1,4 +1,5 @@
 # Airdrop Web Application
+Actual version you can find on https://rc-airdrop.vercel.app
 Example dApp for showcasing how to integrate with a smart contract on the Concordium blockchain.
 The project was bootstrapped with Vite.
 
@@ -51,8 +52,26 @@ If the transaction failed, you will see a red cross and an error message in the 
 
 ### Find
 
+On this page, you can find airdrops that interest them.
+
+- INDEX - set the contract index that was reported when the airdrop was created
+- SUBINDEX - in most cases set to 0
+
 ### Claim
+
+On this page you can claim airdrops.
+
+- AMOUNT OF NFTs - number of NFTs at claiming
+
+### Transactions
+
+On this page you can view all created transactions
 
 ### Settings
 
+On this page you can view all created transactions
+
 ### Other
+
+The application only supports the desktop solution. 
+Mobile version is not supported
