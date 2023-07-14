@@ -12,7 +12,9 @@ export async function checkWhitelist(
 		.data;
 	const whitelist: string[] = whitelistRaw?.split(',');
 	return {
-		isOnWhitelist: whitelist.indexOf(account) >= 0,
+		isOnWhitelist:
+			(whitelist.length === 1 && whitelist[0] === '') ||
+			whitelist.indexOf(account) >= 0,
 		whitelistUrl: contractState.whitelistUrl,
 	};
 }
