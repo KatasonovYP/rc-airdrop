@@ -10,8 +10,8 @@ export const AirdropHeader: FC = () => {
 
 	useEffect(() => setActiveConnectorType(BROWSER_WALLET), []);
 	return (
-		<header className='flex gap-4 items-start justify-between px-24 py-12'>
-			<div className='flex gap-4 items-start'>
+		<header className='flex gap-4 items-start justify-between px-24 py-12 flex-col lg:flex-row'>
+			<div className='flex gap-4 items-start flex-col lg:flex-row'>
 				<StyledLink
 					to={RoutePath.create}
 					description='create new your own airdrop'

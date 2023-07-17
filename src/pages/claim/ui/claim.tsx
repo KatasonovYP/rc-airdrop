@@ -6,7 +6,7 @@ export default function Claim() {
 	const metadata = usePageMetadata();
 
 	return (
-		<main className='grid grid-cols-2 gap-12'>
+		<main className='grid grid-cols-1 gap-12 lg:grid-cols-2'>
 			{metadata ? (
 				<NftCard metadata={metadata} />
 			) : (
